@@ -56,6 +56,9 @@ var NP67_I18N = {
       "post.example-role.p1": "Shows the old role and the new one side by side.",
     ---- end of example posts ---- */
 
+    "post.2026-11-08-dev-boost.title": "Enrtarr and FoxBad_ just unlocked Dev Boost!",
+    "post.2026-11-08-dev-boost.p1": "After hours of farm, the two prodigies from the NPEGC rocket league team just unlocked the brand new Dev Boost.",
+
     "post.2026-11-08-roster-reveal.title": "RBRS Fall 2026: Roster reveal",
     "post.2026-11-08-roster-reveal.p1": "Watch the new roster for the RBRS 2026 Fall edition.",
 
@@ -192,6 +195,9 @@ var NP67_I18N = {
       "post.example-role.title": "Exemple : changement de rôle",
       "post.example-role.p1": "Affiche l’ancien rôle et le nouveau côte à côte.",
     ---- end of example posts ---- */
+
+    "post.2026-11-08-dev-boost.title": "Enrtarr et FoxBad_ viennent de débloquer le Dev Boost !",
+    "post.2026-11-08-dev-boost.p1": "Après des heures de grind, les deux prodiges de l'équipe Rocket League de la NPEGC viennent de débloquer le tout nouveau Dev Boost.",
 
     "post.2026-11-08-roster-reveal.title": "RBRS Automne 2026: Roster reveal",
     "post.2026-11-08-roster-reveal.p1": "Découvre le nouveau roster pour l'édition d'automne des RBRS 2026.",
