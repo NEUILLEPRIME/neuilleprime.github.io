@@ -19,3 +19,6 @@ One line per sub-step: milestone | sub-step | status | next.
 - M3 | 1-5 page head + count, RL, LoL, staff rows, FR keys | done | M3.6 anchor test
 - M3 | 6 screenshots 4 widths EN/FR + anchor test http/file 8/8 | done | M3 checkpoint
 - M3 | checkpoint + commit | done | M4.1 about page head + story + pull-quote
+- M4 | 1-7 about (story, pull-quote, structure, values, FAQ, contact) + 404 + FR keys | done | M4 screenshots/no-JS
+- M4 | screenshots, values mobile grid fix, no-JS + details test | done | M4 checkpoint
+- M4 | checkpoint + commit | done | M5.1 Lighthouse setup (headless Chrome via npx, outside repo)

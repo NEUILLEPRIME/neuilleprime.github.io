@@ -28,3 +28,9 @@ Format: date — area — decision — reason.
 - 2026-11-07 — Per-person social links — X (+ Twitch for players/coaches) at `https://x.com/<tag placeholder>`; `aria-label="X"`/`"Twitch"` (brand names, identical in EN/FR) + `aria-describedby` → the person's tag. — Gives each icon link a unique accessible description without 26 extra i18n keys.
 - 2026-11-07 — Roster section rhythm — page head m/s, RL s, LoL m, staff s. RL: sticky side head + featured first row; LoL: head on top, full-width rows with fixed role column; staff: compact 2-column rows, 64px initials, role above name.
 - 2026-11-07 — Staff section heading — `h2` "Staff" at `--fs-h2` (36px), smaller than the game sections (`--fs-display`), to mark it as secondary.
+- 2026-11-07 — About section rhythm — page head m, story l, structure s, values m, FAQ s, contact m. `.page-head` changed from m/s to m on both sides (Roster: head m → RL s, still distinct).
+- 2026-11-07 — About contact — left-aligned split (heading + line | two buttons + visible address), not centered. — Only 2 centered sections allowed site-wide: Home contact band and 404.
+- 2026-11-07 — Pull-quote — own line "One tag. Two games. Built in Alsace." as a `<p class="pull">` (not `<blockquote>`, since it quotes nobody). The 2px accent left border is the only accent rule in About's content; the header's active-nav underline is shared chrome.
+- 2026-11-07 — FAQ copy — answers only route to Discord/email/linked accounts; no dates, prices, ranks or schedules invented. "Rank" appears only as something the applicant sends.
+- 2026-11-07 — Values — vertical numbered list (01/02/03) with title + one sentence per row, not cards. Principles are generic commitments, not facts about the org.
+- 2026-11-07 — About story heading — EN "Where NP67 stands", FR "Qui est NP67" (natural French rather than literal).
