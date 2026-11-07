@@ -34,3 +34,7 @@ Format: date — area — decision — reason.
 - 2026-11-07 — FAQ copy — answers only route to Discord/email/linked accounts; no dates, prices, ranks or schedules invented. "Rank" appears only as something the applicant sends.
 - 2026-11-07 — Values — vertical numbered list (01/02/03) with title + one sentence per row, not cards. Principles are generic commitments, not facts about the org.
 - 2026-11-07 — About story heading — EN "Where NP67 stands", FR "Qui est NP67" (natural French rather than literal).
+- 2026-11-07 — About story reveal removed — Lighthouse mobile (412×823) showed the story section above the fold while hidden, delaying LCP to 2.6s (perf 96). Removed `.reveal`; LCP 1.4s, perf 100. Remaining reveals: Home rail, about teaser, contact band; About structure, values, contact.
+- 2026-11-07 — Audit copy fixes — "Questions" → "Tryouts, partners, content"; "The structure" → "NP67 on paper"; About contact line merged into one sentence. — Strict reading of Copy checks 4 and 5.
+- 2026-11-07 — Display line-height kept at 1.05 — audit check suggests 1.1–1.3 for headings; the spec and prompt lock display at 1.05 (section headings 1.1). Scored PASS with an explicit note in AUDIT.md; the check's purpose (heading vs body differentiation) is met.
+- 2026-11-07 — Hero line kept verbatim — "Rocket League and League of Legends. Built in Alsace." is prescribed by spec and prompt; treated as a tagline, noted in AUDIT.md.

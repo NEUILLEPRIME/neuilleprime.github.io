@@ -22,3 +22,7 @@ One line per sub-step: milestone | sub-step | status | next.
 - M4 | 1-7 about (story, pull-quote, structure, values, FAQ, contact) + 404 + FR keys | done | M4 screenshots/no-JS
 - M4 | screenshots, values mobile grid fix, no-JS + details test | done | M4 checkpoint
 - M4 | checkpoint + commit | done | M5.1 Lighthouse setup (headless Chrome via npx, outside repo)
+- M5 | 1 Lighthouse via npx chrome-headless-shell (+libXdamage from .deb, no install), 8 runs; about story reveal removed | done | M5.2 browser QA
+- M5 | 2 browser QA: 32 screenshots, keyboard, hover, file://, FR completeness, no-JS, motion | done | M5.3 audit
+- M5 | 3 AUDIT.md 100/100 (3 copy fixes), MANUAL_TEST.md | done | M5 checkpoint
+- M5 | checkpoint + commit | done | M6.1 README full
