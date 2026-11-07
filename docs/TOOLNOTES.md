@@ -20,3 +20,8 @@ Environment discovery (Step 0). Redo every session; append a dated block.
 - **`scripts/check.mjs`** (Node, zero deps) — Node is present on the build shell; chosen over Python because the i18n dictionary is a JS file and can be evaluated natively with `vm`.
 - **Browser checks** (screenshots at 4 widths, overflow, keyboard, no-JS, `file://`): automated with Playwright + Chrome in Claude's cloud workspace, against a copy of the site files. Google Fonts will not load there (no network), so screenshots render with the fallback stack (`Arial Narrow` / system sans); layout and overflow checks remain meaningful but are slightly pessimistic for Anton width. Logged as a limitation.
 - **Lighthouse**: not installed anywhere and cannot be downloaded (npm blocked). Expected to be **manual — not verified**; steps go to `docs/MANUAL_TEST.md`. Re-check at M5.
+
+## 2026-11-07 — session 2 (resume)
+
+- Same toolchain (node 22.23.4, git 2.34.1, python 3.10.12, no local browser).
+- **Network changed:** `registry.npmjs.org` and `fonts.googleapis.com` now return 200 from the build shell. `npx --yes` downloads should work → Lighthouse may become possible at M5 (needs a Chrome binary; try `npx --yes @puppeteer/browsers install chrome-headless-shell` into a temp dir outside the repo). Playwright route in the cloud workspace remains the fallback.
