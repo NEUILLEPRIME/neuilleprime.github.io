@@ -55,6 +55,10 @@ var NP67_I18N = {
       "post.example-role.title": "Example: role change",
       "post.example-role.p1": "Shows the old role and the new one side by side.",
     ---- end of example posts ---- */
+
+    "post.2026-11-08-roster-reveal.title": "RBRS Fall 2026: Roster reveal",
+    "post.2026-11-08-roster-reveal.p1": "Watch the new roster for the RBRS 2026 Fall edition.",
+
     "lang.label": "Language",
     "social.label": "NPEGC social links",
     "social.discord": "NPEGC on Discord",
@@ -188,6 +192,10 @@ var NP67_I18N = {
       "post.example-role.title": "Exemple : changement de rôle",
       "post.example-role.p1": "Affiche l’ancien rôle et le nouveau côte à côte.",
     ---- end of example posts ---- */
+
+    "post.2026-11-08-roster-reveal.title": "RBRS Automne 2026: Roster reveal",
+    "post.2026-11-08-roster-reveal.p1": "Découvre le nouveau roster pour l'édition d'automne des RBRS 2026.",
+
     "lang.label": "Langue",
     "social.label": "Réseaux de NPEGC",
     "social.discord": "NPEGC sur Discord",
