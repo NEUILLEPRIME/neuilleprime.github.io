@@ -26,3 +26,5 @@ One line per sub-step: milestone | sub-step | status | next.
 - M5 | 2 browser QA: 32 screenshots, keyboard, hover, file://, FR completeness, no-JS, motion | done | M5.3 audit
 - M5 | 3 AUDIT.md 100/100 (3 copy fixes), MANUAL_TEST.md | done | M5 checkpoint
 - M5 | checkpoint + commit | done | M6.1 README full
+- M6 | 1 README full (deploy, placeholders, logo/accent, i18n, player rows, domain, limits) | done | M6.2 HANDOFF
+- M6 | 2 HANDOFF, checkpoint, final commit | done | none — build complete; human: replace YOUR- values, push, enable Pages
