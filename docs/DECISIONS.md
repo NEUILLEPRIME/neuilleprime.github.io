@@ -24,3 +24,7 @@ Format: date — area — decision — reason.
 - 2026-11-07 — Games strip reveal — no `.reveal` on the games strip. — At 1280×720 it peeks into the first viewport; prompt forbids hiding above-the-fold content. Reveals remain on the rail, about teaser and contact band.
 - 2026-11-07 — Section padding, Home — hero m, games s, rail m, about l, contact m. No two adjacent sections share a value.
 - 2026-11-07 — Duplicate "Roster" link text — the two games-strip links carry aria-labels "Rocket League roster" / "League of Legends roster" (visible text contained, label-in-name OK).
+- 2026-11-07 — Coach/staff placeholders — `YOUR-COACH-RL`, `YOUR-COACH-LOL`, `YOUR-STAFF-1..3` in the tag slot; names `Coach One/Two`, `Staff One/Two/Three`. — Same pattern as players; all listed in README.
+- 2026-11-07 — Per-person social links — X (+ Twitch for players/coaches) at `https://x.com/<tag placeholder>`; `aria-label="X"`/`"Twitch"` (brand names, identical in EN/FR) + `aria-describedby` → the person's tag. — Gives each icon link a unique accessible description without 26 extra i18n keys.
+- 2026-11-07 — Roster section rhythm — page head m/s, RL s, LoL m, staff s. RL: sticky side head + featured first row; LoL: head on top, full-width rows with fixed role column; staff: compact 2-column rows, 64px initials, role above name.
+- 2026-11-07 — Staff section heading — `h2` "Staff" at `--fs-h2` (36px), smaller than the game sections (`--fs-display`), to mark it as secondary.

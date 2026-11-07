@@ -60,7 +60,20 @@ var NP67_I18N = {
     "stats.coaches": "Coaches",
     "stats.staff": "Staff",
     "contact.title": "Get in touch",
-    "contact.line": "Tryouts, partnerships or content: email us or find us on Discord."
+    "contact.line": "Tryouts, partnerships or content: email us or find us on Discord.",
+    "roster.title": "Roster",
+    "roster.sub": "Who plays what, game by game.",
+    "roster.count": "8 players · 2 coaches · 3 staff",
+    "squad.rl.count": "3 players · 1 coach",
+    "squad.lol.count": "5 players · 1 coach · every lane",
+    "squad.staff.title": "Staff",
+    "squad.staff.count": "Management, media, operations",
+    "role.coach": "Coach",
+    "role.adc": "ADC",
+    "role.support": "Support",
+    "role.manager": "Manager",
+    "role.media": "Media",
+    "role.operations": "Operations"
   },
 
   fr: {
@@ -117,7 +130,20 @@ var NP67_I18N = {
     "stats.coaches": "Coachs",
     "stats.staff": "Staff",
     "contact.title": "Parlons-en",
-    "contact.line": "Tryouts, partenariats ou contenu : écris-nous ou retrouve-nous sur Discord."
+    "contact.line": "Tryouts, partenariats ou contenu : écris-nous ou retrouve-nous sur Discord.",
+    "roster.title": "Effectif",
+    "roster.sub": "Qui joue quoi, jeu par jeu.",
+    "roster.count": "8 joueurs · 2 coachs · 3 staff",
+    "squad.rl.count": "3 joueurs · 1 coach",
+    "squad.lol.count": "5 joueurs · 1 coach · toutes les lanes",
+    "squad.staff.title": "Staff",
+    "squad.staff.count": "Direction, médias, opérations",
+    "role.coach": "Coach",
+    "role.adc": "ADC",
+    "role.support": "Support",
+    "role.manager": "Manager",
+    "role.media": "Média",
+    "role.operations": "Opérations"
   }
 };
 

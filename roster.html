@@ -38,14 +38,127 @@
   </header>
 
   <main id="main">
-    <section class="stub">
+    <section class="page-head" aria-labelledby="page-title">
       <div class="container">
-        <h1>ROSTER</h1>
+        <p class="label page-head__kicker">NP67</p>
+        <h1 id="page-title" data-i18n="roster.title">Roster</h1>
+        <p class="page-head__sub" data-i18n="roster.sub">Who plays what, game by game.</p>
+        <p class="label page-head__count" data-i18n="roster.count">8 players · 2 coaches · 3 staff</p>
       </div>
     </section>
-    <section class="stub" id="rl"><div class="container"><h2>Rocket League</h2></div></section>
-    <section class="stub" id="lol"><div class="container"><h2>League of Legends</h2></div></section>
-    <section class="stub" id="staff"><div class="container"><h2>Staff</h2></div></section>
+
+    <section class="squad squad--rl" id="rl" aria-labelledby="rl-title">
+      <div class="container squad__grid">
+        <div class="squad__head">
+          <p class="label squad__index">01 / RL</p>
+          <h2 id="rl-title">Rocket League</h2>
+          <p class="label squad__count" data-i18n="squad.rl.count">3 players · 1 coach</p>
+        </div>
+        <ul class="squad__list" role="list">
+            <li class="row row--feature">
+              <div class="initials" aria-hidden="true">P1</div>
+              <div><p class="row__tag" id="tag-tag-1">YOUR-TAG-1</p><p class="row__name">Player One</p></div>
+              <p class="label row__role" data-i18n="role.player">Player</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-1" aria-label="X" aria-describedby="tag-tag-1"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-1" aria-label="Twitch" aria-describedby="tag-tag-1"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P2</div>
+              <div><p class="row__tag" id="tag-tag-2">YOUR-TAG-2</p><p class="row__name">Player Two</p></div>
+              <p class="label row__role" data-i18n="role.player">Player</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-2" aria-label="X" aria-describedby="tag-tag-2"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-2" aria-label="Twitch" aria-describedby="tag-tag-2"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P3</div>
+              <div><p class="row__tag" id="tag-tag-3">YOUR-TAG-3</p><p class="row__name">Player Three</p></div>
+              <p class="label row__role" data-i18n="role.player">Player</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-3" aria-label="X" aria-describedby="tag-tag-3"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-3" aria-label="Twitch" aria-describedby="tag-tag-3"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">C1</div>
+              <div><p class="row__tag" id="tag-coach-rl">YOUR-COACH-RL</p><p class="row__name">Coach One</p></div>
+              <p class="label row__role" data-i18n="role.coach">Coach</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-COACH-RL" aria-label="X" aria-describedby="tag-coach-rl"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-COACH-RL" aria-label="Twitch" aria-describedby="tag-coach-rl"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="squad squad--lol" id="lol" aria-labelledby="lol-title">
+      <div class="container">
+        <div class="squad__head">
+          <div>
+            <p class="label squad__index">02 / LOL</p>
+            <h2 id="lol-title">League of Legends</h2>
+          </div>
+          <p class="label squad__count" data-i18n="squad.lol.count">5 players · 1 coach · every lane</p>
+        </div>
+        <ul class="squad__list" role="list">
+            <li class="row">
+              <div class="initials" aria-hidden="true">P4</div>
+              <div><p class="row__tag" id="tag-tag-4">YOUR-TAG-4</p><p class="row__name">Player Four</p></div>
+              <p class="label row__role" data-i18n="role.top">Top</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-4" aria-label="X" aria-describedby="tag-tag-4"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-4" aria-label="Twitch" aria-describedby="tag-tag-4"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P5</div>
+              <div><p class="row__tag" id="tag-tag-5">YOUR-TAG-5</p><p class="row__name">Player Five</p></div>
+              <p class="label row__role" data-i18n="role.jungle">Jungle</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-5" aria-label="X" aria-describedby="tag-tag-5"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-5" aria-label="Twitch" aria-describedby="tag-tag-5"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P6</div>
+              <div><p class="row__tag" id="tag-tag-6">YOUR-TAG-6</p><p class="row__name">Player Six</p></div>
+              <p class="label row__role" data-i18n="role.mid">Mid</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-6" aria-label="X" aria-describedby="tag-tag-6"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-6" aria-label="Twitch" aria-describedby="tag-tag-6"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P7</div>
+              <div><p class="row__tag" id="tag-tag-7">YOUR-TAG-7</p><p class="row__name">Player Seven</p></div>
+              <p class="label row__role" data-i18n="role.adc">ADC</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-7" aria-label="X" aria-describedby="tag-tag-7"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-7" aria-label="Twitch" aria-describedby="tag-tag-7"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">P8</div>
+              <div><p class="row__tag" id="tag-tag-8">YOUR-TAG-8</p><p class="row__name">Player Eight</p></div>
+              <p class="label row__role" data-i18n="role.support">Support</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-TAG-8" aria-label="X" aria-describedby="tag-tag-8"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-TAG-8" aria-label="Twitch" aria-describedby="tag-tag-8"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+            <li class="row">
+              <div class="initials" aria-hidden="true">C2</div>
+              <div><p class="row__tag" id="tag-coach-lol">YOUR-COACH-LOL</p><p class="row__name">Coach Two</p></div>
+              <p class="label row__role" data-i18n="role.coach">Coach</p>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-COACH-LOL" aria-label="X" aria-describedby="tag-coach-lol"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li><li><a href="https://twitch.tv/YOUR-COACH-LOL" aria-label="Twitch" aria-describedby="tag-coach-lol"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li></ul>
+            </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="squad squad--staff" id="staff" aria-labelledby="staff-title">
+      <div class="container">
+        <div class="squad__head">
+          <p class="label squad__index">03 / NP67</p>
+          <h2 id="staff-title" data-i18n="squad.staff.title">Staff</h2>
+          <p class="label squad__count" data-i18n="squad.staff.count">Management, media, operations</p>
+        </div>
+        <ul class="staff-list" role="list">
+            <li class="staff-row">
+              <div class="initials" aria-hidden="true">S1</div>
+              <div><p class="label row__role" data-i18n="role.manager">Manager</p><p class="row__tag" id="tag-staff-1">YOUR-STAFF-1</p><p class="row__name">Staff One</p></div>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-STAFF-1" aria-label="X" aria-describedby="tag-staff-1"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li></ul>
+            </li>
+            <li class="staff-row">
+              <div class="initials" aria-hidden="true">S2</div>
+              <div><p class="label row__role" data-i18n="role.media">Media</p><p class="row__tag" id="tag-staff-2">YOUR-STAFF-2</p><p class="row__name">Staff Two</p></div>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-STAFF-2" aria-label="X" aria-describedby="tag-staff-2"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li></ul>
+            </li>
+            <li class="staff-row">
+              <div class="initials" aria-hidden="true">S3</div>
+              <div><p class="label row__role" data-i18n="role.operations">Operations</p><p class="row__tag" id="tag-staff-3">YOUR-STAFF-3</p><p class="row__name">Staff Three</p></div>
+              <ul class="social" role="list"><li><a href="https://x.com/YOUR-STAFF-3" aria-label="X" aria-describedby="tag-staff-3"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4h3.4L16 16h-3.4z"/><path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16"/></svg></a></li></ul>
+            </li>
+        </ul>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">

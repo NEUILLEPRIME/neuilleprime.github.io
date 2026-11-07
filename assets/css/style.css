@@ -507,6 +507,105 @@ strong { font-weight: 500; }
 .contact-band p { margin: 16px auto 32px; color: var(--muted); }
 .contact-band__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
+/* ---- Inner pages: page head ---- */
+.page-head { padding-block: var(--space-m) var(--space-s); }
+.page-head__kicker { color: var(--accent); margin-bottom: 20px; }
+.page-head__sub { margin-top: 16px; font-size: 20px; line-height: 1.5; color: var(--muted); }
+.page-head__count {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  color: var(--paper);
+}
+
+/* ---- Roster: squads (shared) ---- */
+.squad { border-top: 1px solid var(--line); }
+.squad--rl { padding-block: var(--space-s); }
+.squad--lol { padding-block: var(--space-m); }
+.squad--staff { padding-block: var(--space-s); }
+
+.squad__index { color: var(--accent); }
+.squad__head h2 { margin-top: 12px; font-size: var(--fs-display); }
+.squad__count { margin-top: 10px; color: var(--muted); }
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 12px 24px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  transition: border-color 0.15s ease;
+}
+.row + .row { margin-top: -1px; }
+.row:hover { z-index: 1; border-color: var(--accent); }
+
+.row__tag { font-family: var(--font-display); font-size: 28px; line-height: 1.1; letter-spacing: 0.01em; }
+.row__name { font-size: 15px; color: var(--muted); }
+.row__role { color: var(--paper); }
+.row .social { margin-right: -12px; }
+
+@media (max-width: 599px) {
+  .row { grid-template-columns: 64px minmax(0, 1fr); padding: 16px; }
+  .row .initials { width: 64px; height: 64px; font-size: 28px; }
+  .row__role, .row .social { grid-column: 2; }
+  .row .social { margin: -8px 0 -8px -12px; }
+}
+
+/* ---- Roster: Rocket League — side head, featured first row ---- */
+.squad--rl .squad__grid { display: grid; gap: 32px; }
+.row--feature { padding-block: 32px; }
+.row--feature .row__tag { font-size: var(--fs-display); }
+
+@media (min-width: 900px) {
+  .squad--rl .squad__grid { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 48px; }
+  .squad--rl .squad__head { position: sticky; top: calc(var(--header-h) + 24px); align-self: start; }
+}
+
+/* ---- Roster: League of Legends — head on top, full-width rows, role column ---- */
+.squad--lol .squad__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px 24px;
+  margin-bottom: 32px;
+}
+.squad--lol .row { padding-block: 24px; }
+
+@media (min-width: 900px) {
+  .squad--lol .row { grid-template-columns: 96px minmax(0, 1fr) 180px auto; }
+}
+
+/* ---- Roster: staff — compact two-column rows ---- */
+.squad--staff .squad__head { margin-bottom: 24px; }
+.squad--staff .squad__head h2 { font-size: var(--fs-h2); }
+.staff-list { display: grid; }
+
+.staff-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  margin-top: -1px;
+  transition: border-color 0.15s ease;
+}
+.staff-row:hover { z-index: 1; border-color: var(--accent); }
+.staff-row .initials { width: 64px; height: 64px; font-size: 26px; }
+.staff-row .row__role { color: var(--muted); }
+.staff-row .row__tag { font-size: 22px; }
+.staff-row .row__name { font-size: 14px; }
+.staff-row .social { margin-right: -12px; }
+
+@media (min-width: 768px) {
+  .staff-list { grid-template-columns: 1fr 1fr; column-gap: 24px; }
+}
+
 /* ==========================================================================
    7. Utilities
    ========================================================================== */

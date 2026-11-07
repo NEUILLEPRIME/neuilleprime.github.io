@@ -16,3 +16,6 @@ One line per sub-step: milestone | sub-step | status | next.
 - M2 | fix: mail icon substitution corrupted mailto href; check 11 now flags malformed href/src | done | M2.6 re-run screenshots
 - M2 | 6-7 screenshots 4 widths EN/FR, first-viewport test, games strip reveal removed | done | M2 checkpoint
 - M2 | checkpoint + commit | done | M3.1 roster page header + count
+- M3 | 1-5 page head + count, RL, LoL, staff rows, FR keys | done | M3.6 anchor test
+- M3 | 6 screenshots 4 widths EN/FR + anchor test http/file 8/8 | done | M3 checkpoint
+- M3 | checkpoint + commit | done | M4.1 about page head + story + pull-quote
