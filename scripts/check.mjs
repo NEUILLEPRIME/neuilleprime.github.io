@@ -30,13 +30,15 @@ const decode = (s) => s
   .replace(/&amp;/g, "&");
 const norm = (s) => decode(String(s)).replace(/\s+/g, " ").trim();
 const noComments = (s) => s.replace(/<!--[\s\S]*?-->/g, "");
+// Formatters (Prettier) wrap attributes over lines; collapse whitespace inside tags so checks see one line per tag.
+const flatTags = (s) => s.replace(/<[a-zA-Z\/][^>]*>/g, (t) => t.replace(/\s+/g, " ").replace(/ (\/?)>$/, "$1>"));
 const attr = (tag, name) => { const m = tag.match(new RegExp(`\\s${name}="([^"]*)"`)); return m ? m[1] : null; };
 
 // ---------------------------------------------------------------- load
 const pages = {};
 for (const p of PAGES) {
   if (!exists(p)) { fail(9, p, "page missing"); continue; }
-  pages[p] = noComments(read(p));
+  pages[p] = flatTags(noComments(read(p)));
 }
 const cssFiles = walk("assets").filter((f) => f.endsWith(".css"));
 const jsFiles = walk("assets").filter((f) => f.endsWith(".js"));
@@ -132,9 +134,12 @@ for (const [p, html] of Object.entries(pages)) {
   const tc = html.match(/<meta name="theme-color" content="([^"]*)"/);
   if (!tc || tc[1].toLowerCase() !== TOKENS.ink) fail(4, p, "theme-color must be --ink #0B0B0C");
 }
-if (exists("assets/img/favicon.svg"))
-  for (const h of read("assets/img/favicon.svg").match(HEX) || [])
-    if (!Object.values(TOKENS).includes(h.toLowerCase())) fail(4, "assets/img/favicon.svg", `non-token color ${h}`);
+const iconRefs = new Set(Object.values(pages).flatMap((h) => [...h.matchAll(/<link rel="icon" href="\.\/([^"]+\.svg)"/g)].map((m) => m[1])));
+for (const ic of iconRefs) if (exists(ic)) {
+  const hexes = new Set((read(ic).match(HEX) || []).map((h) => h.toLowerCase()).filter((h) => !Object.values(TOKENS).includes(h)));
+  if (hexes.size) fail(4, ic, `${hexes.size} non-token colors (e.g. ${[...hexes].slice(0, 3).join(", ")})`);
+  if (fs.statSync(path.join(ROOT, ic)).size > 20000) fail(4, ic, "favicon SVG over 20 KB");
+}
 
 // ---------------------------------------------------------------- 5 + 6  box-shadow, font-family
 for (const f of cssFiles) {
@@ -174,9 +179,9 @@ for (const [p, html] of Object.entries(pages)) scanWords(p, html);
 for (const [lang, d] of [["en", en], ["fr", fr]]) for (const [k, v] of Object.entries(d)) scanWords(`i18n.js ${lang}["${k}"]`, v);
 
 // ---------------------------------------------------------------- 8  no emoji
-const EMOJI = /(?![©®™])[\p{Extended_Pictographic}\u{FE0F}]/u;
+const EMOJI = /(?![\u00a9\u00ae\u2122])[\p{Extended_Pictographic}\u{FE0F}\u{1F1E6}-\u{1F1FF}]/u;
 for (const f of [...Object.keys(pages), ...jsFiles]) {
-  const m = read(f).match(EMOJI);
+  const m = noComments(read(f)).match(EMOJI);
   if (m) fail(8, f, `emoji/pictograph U+${m[0].codePointAt(0).toString(16).toUpperCase()}`);
 }
 
@@ -195,7 +200,7 @@ for (const [p, html] of Object.entries(pages)) {
   if (!/<nav\b[^>]*\saria-label="[^"]+"/.test(html)) fail(9, p, "<nav aria-label> missing");
   for (const og of ["og:type", "og:title", "og:description", "og:url"])
     if (!new RegExp(`<meta property="${og}" content="[^"]+">`).test(html)) fail(9, p, `${og} missing`);
-  if (!/<link rel="icon" href="\.\/assets\/img\/favicon\.svg"/.test(html)) fail(9, p, "favicon link missing");
+  if (!/<link rel="icon" href="\.\/assets\/img\/[\w.-]+\.(svg|png|ico)"/.test(html)) fail(9, p, "favicon link missing");
   const s = [...html.matchAll(/<script\b([^>]*)>/g)].map((m) => m[1]);
   const iI = s.findIndex((a) => /i18n\.js/.test(a)), iM = s.findIndex((a) => /main\.js/.test(a));
   if (iI < 0 || iM < 0 || iI > iM) fail(9, p, "i18n.js must load before main.js");
@@ -207,6 +212,15 @@ for (const [p, html] of Object.entries(pages)) {
   for (const m of html.matchAll(/<img\b[^>]*>/g)) {
     const alt = attr(m[0], "alt");
     if (alt === null || (alt === "" && attr(m[0], "aria-hidden") !== "true")) fail(10, p, `img without alt: ${m[0].slice(0, 80)}`);
+    if (!attr(m[0], "width") || !attr(m[0], "height")) fail(10, p, `img without width/height (layout shift): ${attr(m[0], "src")}`);
+    const src = attr(m[0], "src") || "";
+    if (src.startsWith("./") && exists(src)) {
+      const b = fs.readFileSync(path.join(ROOT, src)).subarray(0, 12);
+      const kind = b.toString("latin1", 8, 12) === "WEBP" ? "webp" : b[0] === 0x89 && b[1] === 0x50 ? "png" : b[0] === 0xff && b[1] === 0xd8 ? "jpg" : /<svg|<\?xml/.test(b.toString("latin1")) ? "svg" : "?";
+      const ext = src.split(".").pop().toLowerCase().replace("jpeg", "jpg");
+      if (kind !== ext) fail(10, p, `${src} is really ${kind}, not .${ext} (re-export it)`);
+      if (fs.statSync(path.join(ROOT, src)).size > 150000) fail(10, p, `${src} is over 150 KB; resize it`);
+    }
   }
   for (const m of html.matchAll(/<svg\b[^>]*>/g)) {
     if (attr(m[0], "aria-hidden") !== "true") fail(10, p, "inline <svg> without aria-hidden=\"true\"");
@@ -250,7 +264,7 @@ for (const [p, html] of Object.entries(pages)) {
 // ---------------------------------------------------------------- 13  no French in HTML
 const FR_CHARS = /[éèàçùêâîôûëïœÉÈÀÇÙÊÂÎÔÛ]/;
 for (const [p, html] of Object.entries(pages)) {
-  const text = html.replace(/<script\b[\s\S]*?<\/script>/g, " ").replace(/<[^>]+>/g, " ");
+  const text = html.replace(/<script\b[\s\S]*?<\/script>/g, " ").replace(/<([a-z][\w-]*)\b[^>]*\stranslate="no"[^>]*>[\s\S]*?<\/\1>/g, " ").replace(/<[^>]+>/g, " ");
   const t = text.match(new RegExp(`.{0,20}${FR_CHARS.source}.{0,20}`));
   if (t) fail(13, p, `French characters in text: "${t[0].trim()}"`);
   for (const m of html.matchAll(/\s(aria-label|title|alt|content|placeholder)="([^"]*)"/g))

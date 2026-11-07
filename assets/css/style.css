@@ -66,6 +66,7 @@ img, svg { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 a { color: inherit; }
 summary { cursor: pointer; }
+[hidden] { display: none !important; }   /* unused social slots, empty lists */
 
 /* ==========================================================================
    3. Base type
@@ -178,7 +179,9 @@ strong { font-weight: 500; }
   letter-spacing: 0.14em;
   text-decoration: none;
   color: var(--paper);
+  gap: 12px;
 }
+.wordmark__mark { width: 40px; height: 40px; flex: none; }
 
 .site-nav ul { display: flex; }
 
@@ -225,7 +228,8 @@ strong { font-weight: 500; }
     border-top: 1px solid var(--line);
   }
   .site-nav ul { margin-left: -14px; }
-  .wordmark { font-size: 20px; letter-spacing: 0.1em; white-space: nowrap; }
+  .wordmark { font-size: 20px; letter-spacing: 0.1em; white-space: nowrap; gap: 10px; }
+  .wordmark__mark { width: 32px; height: 32px; }
 }
 
 /* ---- Buttons and links ---- */
@@ -458,6 +462,16 @@ strong { font-weight: 500; }
   color: var(--paper);
 }
 
+/* Portrait photo: same box as the initials block it replaces. */
+.portrait {
+  display: block;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  object-position: center 20%;
+  background: var(--panel);
+}
+
 .tile__tag { margin-top: 20px; font-family: var(--font-display); font-size: 24px; line-height: 1.1; letter-spacing: 0.01em; }
 .tile__role { margin-top: 6px; color: var(--muted); }
 
@@ -545,13 +559,14 @@ strong { font-weight: 500; }
 .row__tag { font-family: var(--font-display); font-size: 28px; line-height: 1.1; letter-spacing: 0.01em; }
 .row__name { font-size: 15px; color: var(--muted); }
 .row__role { color: var(--paper); }
-.row .social { margin-right: -12px; }
+.row .social { margin-right: -12px; flex-wrap: wrap; justify-content: flex-end; }
 
 @media (max-width: 599px) {
   .row { grid-template-columns: 64px minmax(0, 1fr); padding: 16px; }
   .row .initials { width: 64px; height: 64px; font-size: 28px; }
+  .row .portrait { width: 64px; height: 64px; }
   .row__role, .row .social { grid-column: 2; }
-  .row .social { margin: -8px 0 -8px -12px; }
+  .row .social { margin: -8px 0 -8px -12px; justify-content: flex-start; }
 }
 
 /* ---- Roster: Rocket League — side head, featured first row ---- */
@@ -597,6 +612,7 @@ strong { font-weight: 500; }
 }
 .staff-row:hover { z-index: 1; border-color: var(--accent); }
 .staff-row .initials { width: 64px; height: 64px; font-size: 26px; }
+.staff-row .portrait { width: 64px; height: 64px; }
 .staff-row .row__role { color: var(--muted); }
 .staff-row .row__tag { font-size: 22px; }
 .staff-row .row__name { font-size: 14px; }

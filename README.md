@@ -43,6 +43,9 @@ Every value you must replace starts with `YOUR-`. Search the whole folder for `Y
 | `YOUR-TAG-1` … `YOUR-TAG-8` | `index.html` roster rail (1–6), `roster.html` (all) | Player gamertags: YOUR-TAG-1, YOUR-TAG-2, YOUR-TAG-3 (Rocket League); YOUR-TAG-4 (Top), YOUR-TAG-5 (Jungle), YOUR-TAG-6 (Mid), YOUR-TAG-7 (ADC), YOUR-TAG-8 (Support). On `roster.html` each tag is also used in that player's X / Twitch URL: replace those with the real profile links. |
 | `YOUR-COACH-RL`, `YOUR-COACH-LOL` | `roster.html` | Coach handles (Rocket League, League of Legends) and their X / Twitch URLs |
 | `YOUR-STAFF-1`, `YOUR-STAFF-2`, `YOUR-STAFF-3` | `roster.html` (staff) | Manager, media and operations staff names or handles and their X URLs |
+| `YOUR-X`, `YOUR-TWITCH`, `YOUR-YOUTUBE`, `YOUR-INSTAGRAM` | `roster.html`, inside each person's hidden link slots | That person's X / Twitch / YouTube / Instagram link (see "Player links") |
+| `YOUR-EPIC-NAME` | `roster.html`, Rocket League players' hidden "RL Tracker" slot | Their Rocket League Tracker profile link (see "Player links") |
+| `YOUR-RIOT-ID` | `roster.html`, League of Legends players' hidden "DPM.LOL" slot | Their dpm.lol profile link (see "Player links") |
 
 Also replace (not `YOUR-` prefixed because they are readable stand-ins):
 
@@ -55,14 +58,43 @@ Also replace (not `YOUR-` prefixed because they are readable stand-ins):
 
 Names and tags are not translated. Roles (Player / Joueur, Media / Média …) are.
 
+## Player links (X, Twitch, YouTube, Instagram, RL Tracker, dpm.lol)
+
+Every person on `roster.html` has the same set of link slots, in this order: X, Twitch, YouTube, Instagram, plus **RL Tracker** for Rocket League players and **DPM.LOL** for League of Legends players (coaches and staff have no tracker slot). A slot you have not filled is marked `hidden`, so it never shows on the site.
+
+To turn a link on:
+
+1. Find the person's row in `roster.html` (search for their tag).
+2. In their `<ul class="social" …>`, find the slot, e.g. `<li hidden><a href="https://youtube.com/@YOUR-YOUTUBE" aria-label="YouTube" …>`.
+3. Replace the placeholder URL with the real one and **delete the word `hidden`** from that `<li>`.
+4. If the `<ul class="social" role="list" hidden>` line itself says `hidden` (no link was on yet), delete that `hidden` too.
+5. Run `node scripts/check.mjs`.
+
+For the trackers, open the player's profile on the site and **copy the exact URL from the browser's address bar**: the placeholders only show the usual shape (`https://rocketleague.tracker.network/rocket-league/profile/epic/<name>/overview`, `https://dpm.lol/<Name>-<TAG>`), and the platform part (`epic`, `steam`, `psn`, `xbl`, `switch`) or the Riot tag must match the player's real account.
+
+To turn a link off again, put `hidden` back.
+
+## Player photos
+
+Photos replace the initials block wherever one exists.
+
+1. Save a square-ish photo as `assets/img/portraits/<Tag>.webp` (WebP preferred; `.jpg`/`.png` also work). 192×192 px or larger, under 150 KB. Keep the face in the upper part: the crop keeps the top 20%.
+2. In `roster.html` (and in the Home rail in `index.html` if the player is there), replace that person's
+   `<div class="initials" aria-hidden="true">P2</div>`
+   with
+   `<img class="portrait" src="./assets/img/portraits/FoxBad_.webp" alt="" aria-hidden="true" width="96" height="96" loading="lazy" decoding="async">`
+   Use `width="64" height="64"` in staff rows. The file name is **case-sensitive** on GitHub Pages: `Enrtarr.webp` and `enrtarr.webp` are different files.
+3. Run `node scripts/check.mjs`: it fails if the file is missing, has no width/height, is over 150 KB, or is a PNG/JPEG saved with a `.webp` name.
+
+`alt=""` is deliberate: the player's tag is printed right next to the photo, so screen readers would otherwise read the name twice.
+
+Current photos: `Enrtarr.webp` (Enrtarr on RL, LoL and staff), `maaple.webp` (maaple. on RL, maaplefx on staff).
+
 ## Logo, wordmark and accent color
 
 - Drop the logo into `assets/img/` as `logo.svg` (preferred) or `logo.png`. See `assets/img/README.md`.
-- To show it instead of the text wordmark, in the header of all four pages replace
-  `<a class="wordmark" href="./index.html">NEUILLE PRIME</a>`
-  with
-  `<a class="wordmark" href="./index.html"><img src="./assets/img/logo.svg" alt="NEUILLE PRIME" width="160" height="32"></a>`
-  (adjust the size). Optionally replace `assets/img/favicon.svg` with your mark.
+- The header shows the rose mark (`assets/img/logo-mark.webp`, made from `logo.png`) next to the "NEUILLE PRIME" wordmark. To show the mark alone, delete `<span>NEUILLE PRIME</span>` from the `wordmark` link on all four pages and change the image's `alt=""` to `alt="NEUILLE PRIME"`. Remove `aria-hidden="true"` at the same time.
+- Tab icons: `assets/img/favicon-32.png` and `assets/img/apple-touch-icon.png` (rose on `--ink`), both made from `logo.png`. If you change the logo, regenerate them at the same sizes.
 - The accent color is defined **once**: `--accent` in `:root` at the top of `assets/css/style.css`. Change that one hex value to match the logo. Keep it bright enough that dark `--ink` text on it stays readable (current pair ≈ 5.9:1 contrast). Do not add new colors elsewhere: `scripts/check.mjs` will fail.
 
 ## Translations (EN / FR)

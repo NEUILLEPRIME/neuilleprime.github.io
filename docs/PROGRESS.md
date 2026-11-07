@@ -28,3 +28,4 @@ One line per sub-step: milestone | sub-step | status | next.
 - M5 | checkpoint + commit | done | M6.1 README full
 - M6 | 1 README full (deploy, placeholders, logo/accent, i18n, player rows, domain, limits) | done | M6.2 HANDOFF
 - M6 | 2 HANDOFF, checkpoint, final commit | done | none — build complete; human: replace YOUR- values, push, enable Pages
+- M7 | user request: per-person YouTube/Instagram/RL Tracker/dpm.lol slots, portraits, logo mark, PNG favicon, content sync, check hardening; screenshots + Lighthouse 99-100 | done | user fills link slots / adds photos
