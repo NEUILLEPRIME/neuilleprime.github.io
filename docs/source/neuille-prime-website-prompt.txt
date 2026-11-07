@@ -1,0 +1,366 @@
+# Task: Build the NEUILLE PRIME (NP67) Esports Website
+
+## Objective
+
+Build a static, three-page, bilingual (EN/FR) esports org website for NEUILLE PRIME (tag NP67, Rocket League + League of Legends) in this folder. It must deploy as-is to GitHub Pages as a user page (`https://<username>.github.io`), open correctly from `file://`, and pass the design audit in `website-visuals-test.txt` at 90+/100 with no FAIL in Colors or Typography.
+
+The site is built from scratch. Build it, verify it, document it, and leave it ready to push.
+
+## Source documents — read, never edit
+
+- `neuille-prime-website-spec.md` — the full product spec. It is authoritative. This prompt adds decisions and process on top of it; where they conflict, this prompt wins and you log the conflict in `docs/DECISIONS.md`.
+- `website-visuals-test.txt` — the 30-check design audit. It is the acceptance test for visuals.
+
+Move both into `docs/source/` in M0 (with `git mv` once git exists) so they are not served at the site root. Do not change their content.
+
+## Locked decisions — do not re-litigate
+
+| Area | Decision |
+|---|---|
+| Stack | Static HTML + one CSS file + vanilla JS. No framework, no bundler, no npm runtime dependencies. Google Fonts only external resource. |
+| Pages | `index.html`, `roster.html`, `about.html`, `404.html` |
+| Hosting | GitHub Pages user page, deploy from `main` / root. Add an empty `.nojekyll` file. No `CNAME`. |
+| Paths | Relative only (`./assets/...`, `./roster.html`). Never root-absolute `/...`. |
+| Languages | EN default, FR via header toggle, persisted in `localStorage` key `np67-lang`. |
+| FR register | **Tutoiement** ("Rejoins le Discord", "Écris-nous"). Natural French, not literal translation. |
+| Real data | **None yet.** Use `YOUR-` placeholders from spec §5 everywhere. Region = Alsace, France (listed as "to confirm" in README). |
+| Palette | `--ink #0B0B0C`, `--panel #141416`, `--line #2A2A2E`, `--paper #F1EFEA`, `--muted #8C8C93`, `--accent #FF3D00`. Five neutrals + one accent = "main + grayscale + 1 accent". No other color values anywhere. |
+| Fonts | Anton (display), IBM Plex Sans 400/500 (body), IBM Plex Mono 500 (labels). Nothing else. |
+| Accent text | Text on an accent-filled button is `--ink`, never white (white on `#FF3D00` fails AA contrast). |
+| Box-shadow | Only on the sticky header. Nothing else. |
+| Mobile nav | No hamburger. At narrow widths the header wraps to two rows; links stay visible and ≥44px tall. |
+| Accordions | Native `<details>/<summary>`, styled. Works without JS. |
+| Logo | Text wordmark "NEUILLE PRIME" in Anton, tracked out. No fake graphic. Favicon = minimal SVG with "NP" in Anton-like caps on `--ink`, accent letters (avoids a 404 console error). |
+| Git | `git init` in M0 on branch `main`; one commit per finished milestone. **Never push, never add a remote, never create a GitHub repo.** |
+| Verification | Automate when tools exist (Node/npx Lighthouse, Playwright/headless Chrome screenshots, Python); otherwise fall back to the manual checklist and log why in `docs/TOOLNOTES.md`. |
+| Out of scope | Match results, news, blog, shop, forms, analytics, cookie banner, CMS. |
+
+## Session start protocol
+
+Every session, before changing anything:
+
+1. Read `docs/PROGRESS.md`, `docs/HANDOFF.md`, `docs/DECISIONS.md`, `docs/PLAN.md`, `docs/TOOLNOTES.md` if they exist.
+2. Inspect the folder tree and `git log --oneline -10` if git exists.
+3. If docs and files disagree, the files are the source of truth; log the mismatch in `docs/DECISIONS.md`.
+4. Redo environment discovery (Step 0) even on resume.
+5. Report in two lines: current milestone/sub-step, and what you will do next. Then continue without waiting for approval.
+
+If only the source documents exist, this is a fresh start. Begin at M0.
+
+## Step 0: environment discovery
+
+Write findings to `docs/TOOLNOTES.md`:
+
+- OS and shell.
+- `git --version`; whether `user.name`/`user.email` are set (if not, set them **repo-locally** to `NP67 Site Builder` / `noreply@example.com` and log it).
+- `node --version`, `npx` availability, `python --version`.
+- Whether a Chromium/Chrome/Edge binary exists for headless screenshots and Lighthouse.
+- Whether network access to `fonts.googleapis.com` and the npm registry works.
+- The verification route you will use (automated or manual), and why.
+
+Do not install anything globally. Temporary tools run via `npx` or a throwaway venv outside the site files, and leave no `node_modules/` or `package.json` in the repo.
+
+## Working rules and anti-stall
+
+- One sub-step at a time. A sub-step is one page section, one component, or one script, plus its check.
+- After each sub-step, append one line to `docs/PROGRESS.md`: milestone, sub-step, status, next sub-step.
+- Run `scripts/check` (see Verification) after every change to HTML/CSS/JS once it exists.
+- Never end a turn right after a tool call. End with a short text: what you did, whether it worked, next sub-step.
+- If a tool or command fails twice, log it in `docs/DECISIONS.md`, skip to the next independent sub-step, and say so.
+- On ambiguity, pick the simplest option consistent with the spec, log decision + reason in `docs/DECISIONS.md`, continue.
+- Keep files under ~400 lines; `style.css` may be longer but must be sectioned with comment headers.
+- Narrow edits only. Do not rewrite working files wholesale.
+- Do not add features beyond the spec.
+
+## File layout
+
+Create exactly this structure:
+
+```
+/
+  index.html
+  roster.html
+  about.html
+  404.html
+  .nojekyll
+  .gitignore
+  README.md
+  assets/
+    css/style.css
+    js/i18n.js
+    js/main.js
+    img/favicon.svg
+    img/README.md            (what to drop here: logo.svg, portraits, og.png)
+  scripts/
+    check.mjs  OR  check.py  (pick by Step 0; log the choice)
+  docs/
+    source/neuille-prime-website-spec.md
+    source/website-visuals-test.txt
+    PLAN.md
+    PROGRESS.md
+    DECISIONS.md
+    HANDOFF.md
+    TOOLNOTES.md
+    MANUAL_TEST.md
+    AUDIT.md                 (filled-in 30-check report, final)
+    CHECKPOINTS/M<N>.md
+    screenshots/             (gitignored)
+```
+
+`.gitignore`: `docs/screenshots/`, `node_modules/`, `.lighthouse/`, `*.log`, `.DS_Store`, `Thumbs.db`.
+
+## Design system (`assets/css/style.css`)
+
+Section order with comment headers: tokens → reset → base type → layout → components → page sections → utilities → motion.
+
+### Tokens
+
+```css
+:root {
+  --ink: #0B0B0C;
+  --panel: #141416;
+  --line: #2A2A2E;
+  --paper: #F1EFEA;
+  --muted: #8C8C93;
+  --accent: #FF3D00;           /* the ONLY place accent is defined; logo can override */
+
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --fs-hero: clamp(48px, 7vw, 72px);
+  --fs-display: clamp(40px, 5vw, 48px);
+  --fs-h2: 36px;
+  --fs-body: 17px;
+  --fs-label: 12px;
+
+  --space-s: 64px;
+  --space-m: 96px;
+  --space-l: 140px;
+
+  --container: 1180px;
+  --gutter: 24px;              /* 20px under 600px */
+  --tap: 44px;
+}
+```
+
+Rules:
+
+- Every color in the CSS must be a `var(--…)` reference, except inside `:root`. `rgba()` overlays of tokens are not allowed; use `--line` or `--panel`.
+- The words `gradient`, `linear-gradient`, `radial-gradient`, `conic-gradient` must not appear in any file.
+- `box-shadow` appears on exactly one selector (sticky header) plus `none` resets.
+- Display: Anton, uppercase, `letter-spacing: 0.01em`, `line-height: 1.05`. Section headings `line-height: 1.1`.
+- Body: Plex Sans 400, `line-height: 1.65`, paragraphs `max-width: 68ch`, left-aligned.
+- Labels: Plex Mono, uppercase, 11–12px, `letter-spacing: 0.12em`.
+- Centered text allowed in at most 2 sections site-wide (e.g. 404, contact band). Log which.
+- Each section declares its own vertical padding from `--space-s/m/l`; adjacent sections never share the same value.
+- `:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }`. Never remove outlines without this replacement.
+- Interactive elements: min-height `var(--tap)`, and min-width for icon links.
+- Hover on roster rows: border color → `--accent`. No transforms bigger than 2px.
+
+### Fonts
+
+One `<link>` per page, with `preconnect` to `fonts.googleapis.com` and `fonts.gstatic.com` (crossorigin), `display=swap`, requesting only: Anton 400; IBM Plex Sans 400, 500; IBM Plex Mono 500.
+
+### Icons
+
+Inline SVG only, 20×20, `fill="none" stroke="currentColor" stroke-width="1.75"`, `aria-hidden="true" focusable="false"`; the link carries an `aria-label` (translated via `data-i18n-attr`). Needed: Discord, X, Twitch, YouTube, Instagram, mail, arrow-right. Draw simple line versions yourself; do not paste brand logo files.
+
+## i18n (`assets/js/i18n.js`)
+
+- Classic script (no ES modules — they fail on `file://`). Loaded at the end of `<body>` **without** `defer`, before `main.js`, so the language is applied before first paint.
+- Exposes one global object `NP67_I18N = { en: {...}, fr: {...} }` with flat dotted keys (`hero.title`, `nav.roster`, `meta.home.title`, ...).
+- HTML contains the **English** text inline (works with no JS, good for SEO). The EN dictionary must match the inline English exactly; the check script enforces this.
+- `data-i18n="key"` replaces `textContent`. `data-i18n-html="key"` is allowed only for strings that contain a `<br>` or `<span class="accent">`; keep that set tiny.
+- `data-i18n-attr="aria-label:key;title:key2"` for attributes.
+- Each page's `<body data-page="home|roster|about|404">` selects `meta.<page>.title` and `meta.<page>.description` for `<title>` and `<meta name="description">`.
+- On switch: update all nodes, `document.documentElement.lang`, title, description, the toggle's `aria-pressed` states, and save to `localStorage` inside `try/catch` (storage can throw on `file://` in some browsers; fall back silently to in-memory).
+- Toggle markup: a group with two `<button>`s, `EN` and `FR`, each ≥44×44, active one in accent. No reload, no layout shift (both labels fixed width).
+- No French strings anywhere in HTML.
+- Initial language: saved value, else EN. Do not auto-detect browser language (spec says default EN; log this).
+
+## `assets/js/main.js`
+
+- Footer year: `new Date().getFullYear()` into `[data-year]`.
+- Scroll reveal: elements with `.reveal` get `opacity/translateY(12px)` → visible via `IntersectionObserver`. The hidden state is applied only when `<html>` has class `js` (set by an inline 1-line script in `<head>`) **and** `prefers-reduced-motion: no-preference`. If JS fails or the observer is missing, everything is visible. Never hide above-the-fold content.
+- Mark current nav link with `aria-current="page"` in HTML (not JS).
+- Nothing else. No libraries.
+
+## Page content
+
+Follow spec §4 section by section. Additional decisions:
+
+### All pages
+
+- Skip link "Skip to content" → `#main`, visible on focus.
+- Landmarks: `header`, `nav[aria-label]`, `main#main`, `footer`. Exactly one `h1`.
+- `<html lang="en">`, viewport meta, meta description, `theme-color` = `--ink`, favicon link, Open Graph title/description/type/url (url uses `https://YOUR-USERNAME.github.io/`). Omit `og:image` until a real image exists; note it in README.
+- Header: wordmark (links to `index.html`), nav Home / Roster / About, EN·FR toggle. Sticky, `--panel` background, 1px bottom `--line`, the one allowed shadow.
+- Footer: identical on all pages: legal name "NEUILLE PRIME ESPORT GAMING COMPANY", social icon links (Discord, X, Twitch, YouTube, Instagram), `© <year> NEUILLE PRIME`, a mono line "EN / FR".
+
+### Home
+
+- Hero: asymmetric two-column grid (~7/5) at ≥900px, stacked below. ~80vh min on desktop, auto on mobile. Left: mono kicker `NP67`, h1 `NEUILLE PRIME`, positioning line "Rocket League and League of Legends. Built in Alsace.", primary button "See the roster" (accent fill, ink text) + secondary text link "Join the Discord". Right: bordered org card as a `<dl>`: Structure / Games / Region / Founded (`YOUR-YEAR`). Must all be visible at 1280×720 and 360×740 without scrolling past the h1 + positioning line + primary CTA.
+- Games strip: two halves split by a vertical 1px rule (horizontal rule when stacked). Each: game name in display size, one line, mono `ROSTER →` link to `roster.html#rl` / `#lol`.
+- Roster teaser: horizontal scroll rail, 6 tiles (3 RL + 3 LoL), `scroll-snap-type: x mandatory`, keyboard-focusable region with `aria-label` and `tabindex="0"`, visible scrollbar styled in `--line`. Tile: 96×96 initials block, tag, mono role + game. Rail ends with a "Full roster" link tile.
+- About teaser: editorial split; left 3-sentence paragraph, right stats `<dl>` with hairlines: Games 2 / Players 8 / Coaches 2 / Staff 3 / Region Alsace.
+- Contact band: one sentence, "Email NP67" (mailto) + "Join the Discord" (button). Only section allowed centered here.
+
+### Roster
+
+- Header: `ROSTER` display, one-line subtitle, mono count.
+- **Count conflict in spec:** spec says "8 PLAYERS · 3 STAFF" but also lists 2 coaches + 3 staff. Use `8 PLAYERS · 2 COACHES · 3 STAFF` and log it.
+- Sections `#rl` (3 players + coach), `#lol` (5 players + coach: TOP, JUNGLE, MID, ADC, SUPPORT), `#staff` (MANAGER, MEDIA, OPERATIONS).
+- Row anatomy per spec §4: `<li>` in an `<ol>`/`<ul>`; initials block 96×96 (64×64 under 600px) in Anton on `--panel`, gamertag (Anton), real name (muted), role (mono), social icons. Placeholders: `PLAYER ONE` / `YOUR-TAG` / role. Placeholder names are not translated; roles are.
+- RL roles: use `PLAYER` ×3 + `COACH` (RL has no fixed positions; log it).
+- Give each section a different row density so it doesn't read as one repeated list (e.g. LoL as full rows, RL with a larger first row, staff as compact two-column `<dl>`-style rows).
+
+### About
+
+- Per spec §4. Pull-quote: a single short line with a 2px accent left rule (the only accent-colored rule on the page).
+- Values: `01 / 02 / 03`, mono numbers, Anton titles, one sentence each.
+- FAQ: 3 `<details>`: tryouts, partnerships/sponsoring, content/streaming. Answers point to email/Discord; no invented facts (no dates, prices, ranks).
+- Contact: mailto + Discord button, both placeholders.
+
+### 404
+
+- Big `404` display, one line ("This page left the lobby." / FR equivalent), link back to Home. Centered (second and last centered section).
+
+### Copy rules (enforced by the check script)
+
+- Banned words (EN, case-insensitive, also inside the FR dictionary as loanwords): unlock, empower, seamless, leverage, streamline, robust, cutting-edge, elevate, harness, delve, "learn more", "en savoir plus", "découvrir plus".
+- Subtitles one sentence. Headings concrete ("Two games. One roster.", "Who runs NP67", "Get in touch").
+- Never invent facts: no rankings, trophies, member counts beyond the placeholder roster, dates, sponsors.
+- No emoji anywhere.
+
+## Verification
+
+### `scripts/check` (Node `check.mjs` preferred; Python `check.py` if no Node)
+
+Zero dependencies. Exit non-zero on any failure, print one line per finding. Checks:
+
+1. Every `data-i18n`, `data-i18n-html`, `data-i18n-attr` key exists in both `en` and `fr`; `en` and `fr` have identical key sets; no empty values.
+2. Inline English text of each `data-i18n` node equals `en[key]` (whitespace-normalized).
+3. No `gradient` substring in any `.html/.css/.js`.
+4. Hex colors only in `:root`; all six tokens present; no other hex/rgb/hsl values.
+5. `box-shadow` (non-`none`) on at most one selector.
+6. `font-family` values only reference the three tokens; no Inter/Roboto/Open Sans/Arial as primary.
+7. Banned words absent from HTML and both dictionaries.
+8. No emoji codepoints in HTML/JS dictionaries.
+9. Exactly one `<h1>` per page; skip link, `main#main`, `lang`, meta description, title present.
+10. Every `<img>` has non-empty `alt` (or `alt=""` + `aria-hidden`); every inline `<svg>` has `aria-hidden="true"`.
+11. No root-absolute paths (`href="/`, `src="/`); all internal links resolve to existing files/anchors.
+12. Max 2 `.btn`/CTA elements per `<section>`, max 1 `.btn--primary` per section.
+13. No French-only characters/strings in HTML outside `lang` attributes (heuristic: `é è à ç ù ê` in text nodes).
+14. All placeholder values use the `YOUR-` prefix and each appears in README's placeholder table.
+
+### Automated browser checks (if Step 0 found Chrome/Node)
+
+- Serve with `npx --yes http-server -p 8080 -c-1` or `python -m http.server 8080`.
+- Screenshots of all 4 pages at 360, 768, 1280, 1920 widths, EN and FR, into `docs/screenshots/` (gitignored). Look at them. Check: no horizontal overflow (`document.documentElement.scrollWidth <= innerWidth`), first-viewport content per spec, FR strings don't overflow buttons/headings.
+- `npx --yes lighthouse` on each page, mobile + desktop, categories performance/accessibility/best-practices/seo. Target ≥95 each. Record scores in the milestone checkpoint. Google Fonts cost is accepted; if performance < 95 only because of fonts, log it and try `preload` of the CSS before anything heavier.
+- Keyboard pass: Tab order through skip link → nav → toggle → content; focus ring visible everywhere.
+- `file://` pass: open `index.html` directly, switch to FR, navigate to Roster, confirm FR persists (or degrades to EN without errors if storage is blocked).
+- Disable JS once: all content visible, EN shown, accordions work.
+
+If any of this is unavailable, write the step into `docs/MANUAL_TEST.md` with expected results and mark it "manual — not verified" in the checkpoint.
+
+### Design audit
+
+At M5, audit the built site yourself against all 30 checks in `docs/source/website-visuals-test.txt` and write `docs/AUDIT.md` in that file's exact output format. Be strict: a check you can't honestly pass is a FAIL. Checks about real photos (stock mismatch, reused images, AI illustrations) pass only because no images are used — say so in the report. Fix FAILs before closing M5. Target ≥90 overall, 100 in Colors and Typography.
+
+## Milestones and acceptance
+
+| # | Scope | Done when |
+|---|---|---|
+| M0 | Step 0, `git init` (branch `main`), move source docs, folder skeleton, `.nojekyll`, `.gitignore`, docs skeleton, PLAN | Tree matches layout; TOOLNOTES written; first commit made |
+| M1 | `style.css` tokens/type/components, header, footer, skip link, i18n engine + toggle, `main.js`, favicon, `scripts/check` | A stub `index.html` with header/footer toggles EN↔FR, persists, and `scripts/check` passes |
+| M2 | Home, all 7 sections, EN + FR copy | Check passes; first-viewport rule met at 360 and 1280; no overflow at 4 widths |
+| M3 | Roster | Check passes; anchors `#rl/#lol/#staff` work from Home links; rows differ per section |
+| M4 | About + 404 | Check passes; `<details>` work with JS off |
+| M5 | Full QA: browser checks, Lighthouse, keyboard, `file://`, no-JS, `docs/AUDIT.md`, fixes | AUDIT ≥90 with Colors/Typography 100; Lighthouse ≥95 recorded or blocker logged |
+| M6 | README, `assets/img/README.md`, MANUAL_TEST, HANDOFF | README covers deploy + every placeholder; final commit |
+
+A milestone is done only when its acceptance check passes. Do not start the next while the current one fails.
+
+## Milestone checkpoints
+
+When a milestone passes:
+
+- Write `docs/CHECKPOINTS/M<N>.md`: files changed, checks run and results, acceptance evidence (screenshot names, Lighthouse scores), known limitations.
+- Append completion to `docs/PROGRESS.md`.
+- `git add -A && git commit -m "M<N>: <summary>"`.
+- Do not start the next milestone until the checkpoint and commit exist.
+
+## README.md
+
+Must include:
+
+- What the site is (one paragraph) and the page list.
+- Local preview: open `index.html`, or `python -m http.server`.
+- **Deploy to GitHub Pages (user page):** create a public repo named exactly `YOUR-USERNAME.github.io`; `git remote add origin https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io.git`; `git push -u origin main`; Settings → Pages → Source "Deploy from a branch", `main` / `/ (root)`; wait for the build; visit the URL. Note `.nojekyll` must stay.
+- **Placeholder table:** every `YOUR-` value, which file(s) it lives in, and what to replace it with (username, email, Discord invite, X, Twitch, YouTube, Instagram, founded year, player tags/names, region to confirm).
+- How to add the logo (`assets/img/logo.svg`), swap the wordmark, and change `--accent` in one place.
+- How to add/edit translations (add key in both `en` and `fr`, add `data-i18n` attr, run `scripts/check`).
+- How to add a player row (copy one `<li>`).
+- Custom domain later: add `CNAME` + DNS; not done now.
+- Known limitations (no real images, `og:image` missing, fonts need internet).
+
+## Definition of done
+
+- `scripts/check` passes.
+- `docs/AUDIT.md` ≥90/100, Colors 100, Typography 100.
+- Lighthouse ≥95 in all four categories on all pages, or the gap and reason logged.
+- EN/FR toggle works and persists on all 4 pages; FR uses "tu"; no French in HTML.
+- Works from `file://` and from a local HTTP server; no console errors.
+- Verified at 360/768/1280/1920, keyboard-only, reduced motion, JS disabled.
+- Every placeholder uses `YOUR-` and is listed in README.
+- Git history has one commit per milestone; no remote configured; nothing pushed.
+- `docs/PROGRESS.md` and `docs/HANDOFF.md` are current.
+
+## Do not
+
+- Do not push, add a remote, create a GitHub repo, or enable Pages. The human does that.
+- Do not invent real names, handles, emails, invite links, founding dates, results, sponsors, or achievements.
+- Do not use gradients, glow, blur blobs, a second accent, or any color outside the six tokens.
+- Do not use Inter, Roboto, Open Sans, or any font beyond Anton / IBM Plex Sans / IBM Plex Mono.
+- Do not build repeated 3-column card grids or the centered fullscreen hero with two buttons.
+- Do not use emoji, stock photos, AI images, gradient placeholders, or icon fonts.
+- Do not use "Learn more" or any banned word, in either language.
+- Do not put French text in HTML; all FR lives in `i18n.js`.
+- Do not use ES modules, a bundler, a framework, or leave `node_modules/`/`package.json` in the repo.
+- Do not hide content behind JS; the site must read fully with JS off.
+- Do not use root-absolute paths.
+- Do not edit the source documents in `docs/source/`.
+- Do not end a turn immediately after a tool call.
+- Do not add features outside the spec.
+
+## Stopping rule
+
+Stop only when a milestone is finished, checkpointed, and committed, or when you are truly blocked. Either way, end with the exact line:
+
+```
+NEXT: <next sub-step>
+```
+
+so the user can reply `continue`.
+
+## Handoff protocol
+
+When the user says `wrap up` or `handoff`:
+
+- Write `docs/HANDOFF.md`: last completed milestone and result; verified vs untested (say which checks were manual); known issues with file/selector names; deviations from the spec and why; conventions to follow (tokens, i18n keys, check script); exact next step and files it touches.
+- Update `docs/PROGRESS.md` and commit.
+- Do not start a new milestone.
+
+## First-run checklist for the human (after the build)
+
+1. Read `README.md` → placeholder table; replace every `YOUR-` value.
+2. Drop the logo into `assets/img/`, then check `--accent` against it.
+3. Run `scripts/check`.
+4. Create the `YOUR-USERNAME.github.io` repo, add the remote, push `main`.
+5. Enable Pages (main / root) and open the site; test the EN/FR toggle live.
+
+## Final instruction
+
+Start at M0. Build the site, run the checks, update the docs, commit per milestone, and leave the folder ready to push. Do not ask questions; decide, log, and continue.
