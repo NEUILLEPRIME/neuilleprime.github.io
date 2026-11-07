@@ -227,7 +227,8 @@ strong { font-weight: 500; }
     margin-top: 12px;
     border-top: 1px solid var(--line);
   }
-  .site-nav ul { margin-left: -14px; }
+  .site-nav ul { margin-left: -10px; }
+  .site-nav a { padding: 0 10px; letter-spacing: 0.08em; }
   .wordmark { font-size: 20px; letter-spacing: 0.1em; white-space: nowrap; gap: 10px; }
   .wordmark__mark { width: 32px; height: 32px; }
 }
@@ -740,6 +741,86 @@ strong { font-weight: 500; }
 }
 .lost h1 { font-size: clamp(120px, 22vw, 240px); line-height: 1; }
 .lost p { margin: 16px auto 32px; font-size: 20px; line-height: 1.5; color: var(--muted); }
+
+/* ---- News: feed ---- */
+.feed { padding-block: var(--space-s) var(--space-l); border-top: 1px solid var(--line); }
+.feed__empty { color: var(--muted); padding-block: 24px; }
+.feed:has(.post) .feed__empty { display: none; }
+
+.post {
+  display: grid;
+  gap: 12px 48px;
+  padding-block: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.feed__list > li:first-child .post { padding-top: 0; }
+.post__date {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--muted);
+  text-decoration: none;
+}
+.post__date:hover { color: var(--accent); }
+.post__title { font-size: var(--fs-h2); margin-bottom: 16px; }
+.post__content > p + p { margin-top: 16px; }
+.post__content > * + .video,
+.post__content > * + .gallery,
+.post__content > * + .move { margin-top: 24px; }
+.post__media { margin-block: 8px 24px; }
+.post__media img { width: 100%; height: auto; border: 1px solid var(--line); background: var(--panel); }
+
+@media (min-width: 900px) {
+  .post { grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); }
+  .post__meta { padding-top: 6px; }
+}
+
+/* ---- News: YouTube (click to load) ---- */
+.video { position: relative; aspect-ratio: 16 / 9; background: var(--panel); border: 1px solid var(--line); }
+.video__link { display: block; width: 100%; height: 100%; color: var(--ink); }
+.video__thumb { width: 100%; height: 100%; object-fit: cover; }
+.video__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: auto;
+  background: var(--accent);
+  color: var(--ink);
+  transition: background-color 0.15s ease;
+}
+.video__link:hover .video__play,
+.video__link:focus-visible .video__play { background: var(--paper); }
+.video iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+/* ---- News: gallery ---- */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+.gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--panel); border: 1px solid var(--line); }
+
+/* ---- News: roster move card ---- */
+.move {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  margin-bottom: 20px;
+}
+.move--join { border-left: 2px solid var(--accent); }
+.move__badge { color: var(--muted); }
+.move--join .move__badge { color: var(--accent); }
+.move--change .move__badge { color: var(--paper); }
+.move__tag { margin-top: 4px; font-family: var(--font-display); font-size: 32px; line-height: 1.1; letter-spacing: 0.01em; }
+.move__role { margin-top: 6px; color: var(--muted); }
+.move--leave .portrait, .move--leave .initials { opacity: 0.6; }
+
+@media (max-width: 599px) {
+  .move { gap: 16px; padding: 16px; }
+  .move .initials, .move .portrait { width: 64px; height: 64px; font-size: 28px; }
+  .move__tag { font-size: 26px; }
+}
 
 /* ==========================================================================
    7. Utilities

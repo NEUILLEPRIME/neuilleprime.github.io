@@ -6,6 +6,7 @@ Static, bilingual (English / French) website for **NEUILLE PRIME**, the multigam
 |---|---|---|
 | Home | `index.html` | Hero + org card, games strip, roster preview rail, about teaser, contact band |
 | Roster | `roster.html` | Rocket League (`#rl`), League of Legends (`#lol`) and staff (`#staff`) |
+| News | `news.html` | Posts: text, text + image, YouTube video, gallery, roster moves (see `docs/POSTS.md`) |
 | About | `about.html` | Story, structure, values, FAQ (tryouts / partners / content), contact |
 | 404 | `404.html` | GitHub Pages "not found" page |
 
@@ -46,6 +47,7 @@ Every value you must replace starts with `YOUR-`. Search the whole folder for `Y
 | `YOUR-X`, `YOUR-TWITCH`, `YOUR-YOUTUBE`, `YOUR-INSTAGRAM` | `roster.html`, inside each person's hidden link slots | That person's X / Twitch / YouTube / Instagram link (see "Player links") |
 | `YOUR-EPIC-NAME` | `roster.html`, Rocket League players' hidden "RL Tracker" slot | Their Rocket League Tracker profile link (see "Player links") |
 | `YOUR-RIOT-ID` | `roster.html`, League of Legends players' hidden "DPM.LOL" slot | Their dpm.lol profile link (see "Player links") |
+| `YOUR-VIDEO-ID` | `news.html` (commented-out video example), `docs/POSTS.md` | A YouTube video ID, only when you use the video example |
 
 Also replace (not `YOUR-` prefixed because they are readable stand-ins):
 
@@ -89,6 +91,10 @@ Photos replace the initials block wherever one exists.
 `alt=""` is deliberate: the player's tag is printed right next to the photo, so screen readers would otherwise read the name twice.
 
 Current photos: `Enrtarr.webp` (Enrtarr on RL, LoL and staff), `maaple.webp` (maaple. on RL, maaplefx on staff).
+
+## News posts
+
+Posts live in `news.html` (text in English) and `assets/js/i18n.js` (EN + FR keys). Step-by-step guide and copy-paste templates for every post type (text, text + image, YouTube video, gallery, roster joins / leaves / role change): **[`docs/POSTS.md`](docs/POSTS.md)**. Seven commented-out examples sit in `news.html` for local previews; `YOUR-VIDEO-ID` in the video example is the YouTube video ID to replace.
 
 ## Logo, wordmark and accent color
 

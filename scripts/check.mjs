@@ -8,8 +8,8 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const PAGES = ["index.html", "roster.html", "about.html", "404.html"];
-const PAGE_ID = { "index.html": "home", "roster.html": "roster", "about.html": "about", "404.html": "404" };
+const PAGES = ["index.html", "roster.html", "news.html", "about.html", "404.html"];
+const PAGE_ID = { "index.html": "home", "roster.html": "roster", "news.html": "news", "about.html": "about", "404.html": "404" };
 const TOKENS = { ink: "#0b0b0c", panel: "#141416", line: "#2a2a2e", paper: "#f1efea", muted: "#8c8c93", accent: "#ff3d00" };
 const FONTS_HREF = "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500&display=swap";
 
@@ -179,7 +179,8 @@ for (const [p, html] of Object.entries(pages)) scanWords(p, html);
 for (const [lang, d] of [["en", en], ["fr", fr]]) for (const [k, v] of Object.entries(d)) scanWords(`i18n.js ${lang}["${k}"]`, v);
 
 // ---------------------------------------------------------------- 8  no emoji
-const EMOJI = /(?![\u00a9\u00ae\u2122])[\p{Extended_Pictographic}\u{FE0F}\u{1F1E6}-\u{1F1FF}]/u;
+// Flag emoji (regional-indicator pairs, e.g. the French flag) are allowed by the owner's choice; other emoji are not.
+const EMOJI = /(?![\u00a9\u00ae\u2122])[\p{Extended_Pictographic}\u{FE0F}]/u;
 for (const f of [...Object.keys(pages), ...jsFiles]) {
   const m = noComments(read(f)).match(EMOJI);
   if (m) fail(8, f, `emoji/pictograph U+${m[0].codePointAt(0).toString(16).toUpperCase()}`);
@@ -279,6 +280,28 @@ for (const f of [...Object.keys(pages), "assets/js/i18n.js"])
 for (const ph of placeholders) if (!readme.includes(ph)) fail(14, "README.md", `placeholder ${ph} not listed`);
 for (const [p, html] of Object.entries(pages)) {
   if (/\bTODO\b|lorem ipsum|neuille-prime\.example/i.test(html)) fail(14, p, "non-YOUR- placeholder (TODO / lorem / .example) found");
+}
+
+// ---------------------------------------------------------------- 15  unique ids, news feed order
+for (const [p, html] of Object.entries(pages)) {
+  const seen = new Map();
+  for (const m of html.matchAll(/\sid="([^"]+)"/g)) seen.set(m[1], (seen.get(m[1]) || 0) + 1);
+  for (const [id, n] of seen) if (n > 1) fail(15, p, `id "${id}" used ${n} times`);
+}
+if (pages["news.html"]) {
+  const posts = [...pages["news.html"].matchAll(/<article class="post[^"]*" id="(post-[^"]+)"[\s\S]*?<time class="post__time" datetime="([^"]+)">/g)];
+  let prev = "9999-99-99";
+  for (const [, id, date] of posts) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) fail(15, "news.html", `${id}: datetime "${date}" must be YYYY-MM-DD`);
+    if (date > prev) fail(15, "news.html", `${id} (${date}) is newer than the post above it; newest posts go first`);
+    prev = date;
+  }
+  for (const m of pages["news.html"].matchAll(/<article class="post[^"]*" id="(post-[^"]+)"[\s\S]*?<\/article>/g)) {
+    if (!m[0].includes(`href="#${m[1]}"`)) fail(15, "news.html", `${m[1]}: date link must point to #${m[1]}`);
+    if (!m[0].includes(`id="${m[1]}-title"`)) fail(15, "news.html", `${m[1]}: title id must be ${m[1]}-title`);
+    for (const v of m[0].matchAll(/data-video="([^"]+)"/g))
+      if (!m[0].includes(`watch?v=${v[1]}"`) || !m[0].includes(`/vi/${v[1]}/`)) fail(15, "news.html", `${m[1]}: video id ${v[1]} must also be in the watch link and thumbnail`);
+  }
 }
 
 // ---------------------------------------------------------------- report

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>News — NEUILLE PRIME</title>
+  <meta name="description"
+    content="Videos, announcements and roster moves from NEUILLE PRIME.">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="News — NEUILLE PRIME">
+  <meta property="og:description"
+    content="Videos, announcements and roster moves from NEUILLE PRIME.">
+  <meta property="og:url" content="https://neuilleprime.github.io/news.html">
+  <link rel="icon" href="./assets/img/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="./assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script>if ("IntersectionObserver" in window) document.documentElement.className += " js";</script>
+</head>
+
+<body data-page="news">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="wordmark" href="./index.html"><img class="wordmark__mark" src="./assets/img/logo-mark.webp" alt="" aria-hidden="true" width="40" height="40"><span>NEUILLE PRIME</span></a>
+      <nav class="site-nav" aria-label="Main" data-i18n-attr="aria-label:nav.label">
+        <ul role="list">
+          <li><a href="./index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="./roster.html" data-i18n="nav.roster">Roster</a></li>
+          <li><a href="./news.html" aria-current="page" data-i18n="nav.news">News</a></li>
+          <li><a href="./about.html" data-i18n="nav.about">About</a></li>
+        </ul>
+      </nav>
+      <div class="lang-toggle" role="group" aria-label="Language" data-i18n-attr="aria-label:lang.label">
+        <button type="button" data-lang="en" lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="fr" lang="fr" aria-pressed="false">FR</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="container">
+        <p class="label page-head__kicker">NPEGC</p>
+        <h1 id="page-title" data-i18n="news.title">News</h1>
+        <p class="page-head__sub" data-i18n="news.sub">Videos, announcements and roster moves.</p>
+      </div>
+    </section>
+
+    <section class="feed" aria-labelledby="page-title">
+      <div class="container">
+        <p class="feed__empty" data-i18n="news.empty">No posts yet. Join the Discord to hear things first.</p>
+        <!-- NEW POSTS GO HERE, newest first, inside the list below. Templates and steps: docs/POSTS.md -->
+        <ol class="feed__list" role="list" data-feed>
+          <!-- EXAMPLE: Text post. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-text" aria-labelledby="post-example-text-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-text"><time class="post__time" datetime="2026-11-07">7 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-text-title" data-i18n="post.example-text.title">Example: text post</h2>
+                <p data-i18n="post.example-text.p1">This is what a text-only post looks like. Write as many paragraphs as you need; each one is its own key in i18n.js.</p>
+                <p data-i18n="post.example-text.p2">Delete the examples once your first real post is live.</p>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: Text + image post. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-image" aria-labelledby="post-example-image-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-image"><time class="post__time" datetime="2026-11-06">6 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-image-title" data-i18n="post.example-image.title">Example: text and image</h2>
+                <figure class="post__media"><img src="./assets/img/posts/example-wide.webp" alt="The NEUILLE PRIME rose on a dark background" data-i18n-attr="alt:post.example-image.alt" width="1200" height="675" loading="lazy" decoding="async"></figure>
+                <p data-i18n="post.example-image.p1">The image sits above the text and keeps its proportions. Save images in assets/img/posts/, ideally 1200 pixels wide.</p>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: YouTube video post (replace YOUR-VIDEO-ID twice). Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-video" aria-labelledby="post-example-video-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-video"><time class="post__time" datetime="2026-11-05">5 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-video-title" data-i18n="post.example-video.title">Example: new video</h2>
+                <p data-i18n="post.example-video.p1">Paste the YouTube video ID and the thumbnail appears on its own. The player only loads when someone presses play.</p>
+                <div class="video" data-video="YOUR-VIDEO-ID">
+                  <a class="video__link" href="https://www.youtube.com/watch?v=YOUR-VIDEO-ID" aria-label="Play the video" data-i18n-attr="aria-label:news.play" aria-describedby="post-example-video-title">
+                    <img class="video__thumb" src="https://i.ytimg.com/vi/YOUR-VIDEO-ID/hqdefault.jpg" alt="" aria-hidden="true" width="480" height="360" loading="lazy" decoding="async">
+                    <span class="video__play" aria-hidden="true"><svg class="icon" viewBox="0 0 20 20" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 4.5v11l9-5.5z"/></svg></span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: Gallery post. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-gallery" aria-labelledby="post-example-gallery-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-gallery"><time class="post__time" datetime="2026-11-04">4 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-gallery-title" data-i18n="post.example-gallery.title">Example: gallery</h2>
+                <p data-i18n="post.example-gallery.p1">A short text, then a grid of images. Add or remove images freely; the grid adapts.</p>
+                <ul class="gallery" role="list">
+                  <li><img src="./assets/img/posts/example-wide.webp" alt="The NEUILLE PRIME rose on a dark background" data-i18n-attr="alt:post.example-gallery.alt1" width="400" height="300" loading="lazy" decoding="async"></li>
+                  <li><img src="./assets/img/portraits/Enrtarr.webp" alt="Enrtarr's avatar" data-i18n-attr="alt:post.example-gallery.alt2" width="400" height="300" loading="lazy" decoding="async"></li>
+                  <li><img src="./assets/img/portraits/maaple.webp" alt="maaple's avatar" data-i18n-attr="alt:post.example-gallery.alt3" width="400" height="300" loading="lazy" decoding="async"></li>
+                  <li><img src="./assets/img/portraits/poloniums.webp" alt="Poloniums' avatar" data-i18n-attr="alt:post.example-gallery.alt4" width="400" height="300" loading="lazy" decoding="async"></li>
+                </ul>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: Roster: joins. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-join" aria-labelledby="post-example-join-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-join"><time class="post__time" datetime="2026-11-03">3 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-join-title" data-i18n="post.example-join.title">Example: a player joins</h2>
+                <div class="move move--join">
+                  <img class="portrait" src="./assets/img/portraits/poloniums.webp" alt="" aria-hidden="true" width="96" height="96" loading="lazy" decoding="async">
+                  <div>
+                    <p class="label move__badge" data-i18n="news.move.join">Joins</p>
+                    <p class="move__tag" translate="no">Poloniums</p>
+                    <p class="label move__role"><span data-i18n="role.top">Top</span> · LoL</p>
+                  </div>
+                </div>
+                <p data-i18n="post.example-join.p1">Use this card when someone joins the roster. Swap the portrait, tag, role and game.</p>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: Roster: leaves. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-leave" aria-labelledby="post-example-leave-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-leave"><time class="post__time" datetime="2026-11-02">2 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-leave-title" data-i18n="post.example-leave.title">Example: a player leaves</h2>
+                <div class="move move--leave">
+                  <div class="initials" aria-hidden="true">P9</div>
+                  <div>
+                    <p class="label move__badge" data-i18n="news.move.leave">Leaves</p>
+                    <p class="move__tag" translate="no">FormerPlayer</p>
+                    <p class="label move__role"><span data-i18n="role.player">Player</span> · RL</p>
+                  </div>
+                </div>
+                <p data-i18n="post.example-leave.p1">Same card with the Leaves label. A short thank-you usually goes here.</p>
+              </div>
+            </article>
+          </li>
+          -->
+          <!-- EXAMPLE: Roster: role change. Uncomment to preview; keys are in i18n.js (commented).
+          <li>
+            <article class="post" id="post-example-role" aria-labelledby="post-example-role-title">
+              <p class="post__meta"><a class="label post__date" href="#post-example-role"><time class="post__time" datetime="2026-11-01">1 Nov 2026</time></a></p>
+              <div class="post__content">
+                <h2 class="post__title" id="post-example-role-title" data-i18n="post.example-role.title">Example: role change</h2>
+                <div class="move move--change">
+                  <img class="portrait" src="./assets/img/portraits/Nikoslaï.webp" alt="" aria-hidden="true" width="96" height="96" loading="lazy" decoding="async">
+                  <div>
+                    <p class="label move__badge" data-i18n="news.move.change">Role change</p>
+                    <p class="move__tag" translate="no">Nikoslaï</p>
+                    <p class="label move__role"><span data-i18n="role.player">Player</span> → <span data-i18n="role.coach">Coach</span> · RL</p>
+                  </div>
+                </div>
+                <p data-i18n="post.example-role.p1">Shows the old role and the new one side by side.</p>
+              </div>
+            </article>
+          </li>
+          -->
+        </ol>
+        <button class="btn feed__more" type="button" data-feed-more hidden data-i18n="news.more">Older posts</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p class="label site-footer__legal">NEUILLE PRIME ESPORT GAMING COMPANY</p>
+      <ul class="social site-footer__social" role="list" aria-label="NPEGC social links"
+        data-i18n-attr="aria-label:social.label">
+        <li><a href="https://discord.gg/uu6aJ75XPD" aria-label="NPEGC on Discord"
+            data-i18n-attr="aria-label:social.discord"><svg class="icon" viewBox="0 0 20 20" width="20" height="20"
+              fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true" focusable="false">
+              <path
+                d="M7 5.2a10 10 0 0 1 6 0c1.6.6 2.6 3.6 2.8 7.6-1 1-2.2 1.6-3.4 1.9l-.9-1.5M7 5.2c-1.6.6-2.6 3.6-2.8 7.6 1 1 2.2 1.6 3.4 1.9l.9-1.5" />
+              <path d="M7 12.6c1.9.9 4.1.9 6 0" />
+              <path d="M8 9.6v.4M12 9.6v.4" />
+            </svg></a></li>
+        <li><a href="https://x.com/Neuille_Prime" aria-label="NPEGC on X" data-i18n-attr="aria-label:social.x"><svg
+              class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor"
+              stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M4 4h3.4L16 16h-3.4z" />
+              <path d="M15.6 4l-4.9 5.4M9.3 10.6 4.4 16" />
+            </svg></a></li>
+        <!-- <li><a href="https://twitch.tv/YOUR-CHANNEL" aria-label="NPEGC on Twitch" data-i18n-attr="aria-label:social.twitch"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 3.5h11v8l-3 3h-3l-2.5 2.5v-2.5h-2.5z"/><path d="M9 7.2v3M12.5 7.2v3"/></svg></a></li> -->
+        <li><a href="https://youtube.com/@NPEGC" aria-label="NPEGC on YouTube"
+            data-i18n-attr="aria-label:social.youtube"><svg class="icon" viewBox="0 0 20 20" width="20" height="20"
+              fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true" focusable="false">
+              <rect x="2.5" y="5" width="15" height="10" rx="3" />
+              <path d="M8.5 8v4l3.5-2z" />
+            </svg></a></li>
+        <!-- <li><a href="https://instagram.com/YOUR-HANDLE" aria-label="NPEGC on Instagram" data-i18n-attr="aria-label:social.instagram"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="13" height="13" rx="4"/><circle cx="10" cy="10" r="3"/><path d="M14 6h.01"/></svg></a></li> -->
+      </ul>
+      <p class="label site-footer__meta"><span>© <span data-year>2026</span> NEUILLE PRIME</span><span>EN / FR</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/i18n.js"></script>
+  <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
