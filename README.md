@@ -1,6 +1,6 @@
-# NEUILLE PRIME (NP67) website
+# NEUILLE PRIME website
 
-Static, bilingual (English / French) website for **NEUILLE PRIME**, the multigaming esports org behind the tag **NP67** (Rocket League + League of Legends, Alsace, France). Plain HTML, one CSS file and two small vanilla JS files: no framework, no build step, no dependencies beyond Google Fonts. It runs on GitHub Pages as a user page and also opens straight from disk.
+Static, bilingual (English / French) website for **NEUILLE PRIME**, the multigaming esports org behind the tag **NP67** (Rocket League + League of Legends, France). Plain HTML, one CSS file and two small vanilla JS files: no framework, no build step, no dependencies beyond Google Fonts. It runs on GitHub Pages as a user page and also opens straight from disk.
 
 | Page | File | What it shows |
 |---|---|---|
