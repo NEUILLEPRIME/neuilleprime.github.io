@@ -137,3 +137,9 @@ Add a file named `CNAME` containing just the domain (e.g. `np67.gg`), push it, s
 - **Fonts need internet.** Anton and IBM Plex load from Google Fonts. Offline (e.g. `file://` without a connection) the site falls back to system fonts.
 - **404 on nested URLs.** GitHub Pages shows `404.html` for any missing URL. For a top-level typo (`/rostr`) it is fully styled; for a nested one (`/a/b`) the relative CSS path does not resolve and the page appears unstyled (content and links still work).
 - Tested in Chromium-based browsers only. See `docs/MANUAL_TEST.md` for the Firefox / Safari / phone / live-site checklist.
+
+# To commit a change:
+- `git add -A`
+- `git commit -m "commit message"`
+- `git push`
+- if `"fetch first"` then `it pull --rebase origin main` then `git push` again
