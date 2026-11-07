@@ -331,9 +331,181 @@ strong { font-weight: 500; }
    6. Page sections
    ========================================================================== */
 
-/* ---- Stub (M1 only, replaced in M2) ---- */
+/* ---- Stub (shells not yet built) ---- */
 .stub { padding-block: var(--space-m); }
 .stub p { margin-top: 16px; color: var(--muted); }
+
+/* ---- Home: hero ---- */
+.hero { padding-block: var(--space-m); }
+
+.hero__grid { display: grid; gap: 48px; }
+
+.hero__kicker { color: var(--accent); margin-bottom: 20px; }
+
+.hero__line {
+  margin-top: 20px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 32ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 28px;
+  margin-top: 36px;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    display: grid;
+    align-items: center;
+    min-height: calc(80vh - var(--header-h));
+  }
+  .hero__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; gap: 64px; }
+}
+
+/* ---- Home: org card ---- */
+.org-card { border: 1px solid var(--line); background: var(--panel); }
+
+.org-card__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+}
+
+.org-card__row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 16px;
+  padding: 16px 20px;
+}
+.org-card__row + .org-card__row { border-top: 1px solid var(--line); }
+.org-card dt { color: var(--muted); padding-top: 3px; }
+.org-card dd { font-size: 16px; line-height: 1.5; }
+
+/* ---- Home: games strip ---- */
+.games { padding-block: var(--space-s); }
+
+.games__intro { color: var(--muted); margin-bottom: 24px; }
+
+.games__grid {
+  display: grid;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.game { padding-block: 40px; }
+.game + .game { border-top: 1px solid var(--line); }
+.game h2 { font-size: var(--fs-display); line-height: 1.05; }
+.game p { margin-block: 12px 8px; color: var(--muted); }
+
+@media (min-width: 900px) {
+  .games__grid { grid-template-columns: 1fr 1fr; }
+  .game:first-child { padding-right: 48px; }
+  .game + .game { border-top: 0; border-left: 1px solid var(--line); padding-left: 48px; }
+}
+
+/* ---- Home: roster teaser rail ---- */
+.roster-teaser { padding-block: var(--space-m); }
+
+.roster-teaser__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px 24px;
+  margin-bottom: 32px;
+}
+.roster-teaser__head .label { color: var(--muted); }
+
+.rail {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--ink);
+  padding-bottom: 20px;
+}
+.rail::-webkit-scrollbar { height: 8px; }
+.rail::-webkit-scrollbar-track { background: var(--ink); }
+.rail::-webkit-scrollbar-thumb { background: var(--line); }
+
+.rail__list { display: flex; gap: 16px; width: max-content; }
+
+.tile {
+  scroll-snap-align: start;
+  width: 220px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  transition: border-color 0.15s ease;
+}
+.tile:hover { border-color: var(--accent); }
+
+.initials {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  background: var(--panel);
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1;
+  color: var(--paper);
+}
+
+.tile__tag { margin-top: 20px; font-family: var(--font-display); font-size: 24px; line-height: 1.1; letter-spacing: 0.01em; }
+.tile__role { margin-top: 6px; color: var(--muted); }
+
+.tile--more { display: flex; }
+.tile--more a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 188px;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--paper);
+}
+.tile--more a .icon { color: var(--accent); width: 28px; height: 28px; }
+.tile--more:hover a { color: var(--accent); }
+
+/* ---- Home: about teaser ---- */
+.about-teaser { padding-block: var(--space-l); border-top: 1px solid var(--line); }
+
+.about-teaser__grid { display: grid; gap: 48px; }
+.about-teaser h2 { margin-bottom: 24px; }
+.about-teaser p { margin-bottom: 16px; }
+
+.stats__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.stats__row:first-child { border-top: 1px solid var(--line); }
+.stats dt { color: var(--muted); }
+.stats dd { font-family: var(--font-display); font-size: 36px; line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase; }
+
+@media (min-width: 900px) {
+  .about-teaser__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr); gap: 96px; align-items: start; }
+}
+
+/* ---- Home: contact band (centered section 1 of 2) ---- */
+.contact-band { padding-block: var(--space-m); border-top: 1px solid var(--line); text-align: center; }
+.contact-band h2 { font-size: var(--fs-display); }
+.contact-band p { margin: 16px auto 32px; color: var(--muted); }
+.contact-band__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
 
 /* ==========================================================================
    7. Utilities

@@ -220,6 +220,7 @@ for (const [p, html] of Object.entries(pages)) ids[p] = new Set([...html.matchAl
 for (const [p, html] of Object.entries(pages)) {
   for (const m of html.matchAll(/\s(href|src)="([^"]*)"/g)) {
     const v = m[2];
+    if (/[<>\s]/.test(v)) { fail(11, p, `malformed ${m[1]}="${v.slice(0, 40)}"`); continue; }
     if (v.startsWith("/")) { fail(11, p, `root-absolute path ${m[1]}="${v}"`); continue; }
     if (/^(https?:|mailto:|tel:)/.test(v)) continue;
     if (!v) { fail(11, p, `empty ${m[1]}`); continue; }

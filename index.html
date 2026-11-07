@@ -38,10 +38,92 @@
   </header>
 
   <main id="main">
-    <section class="stub">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="label hero__kicker">NP67</p>
+          <h1 id="hero-title">NEUILLE PRIME</h1>
+          <p class="hero__line" data-i18n="hero.line">Rocket League and League of Legends. Built in Alsace.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="./roster.html"><span data-i18n="hero.cta">See the roster</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+            <a class="text-link" href="https://discord.gg/YOUR-INVITE" data-i18n="cta.discord">Join the Discord</a>
+          </div>
+        </div>
+        <div class="org-card">
+          <p class="label org-card__head"><span data-i18n="org.head">Org file</span><span>NP67</span></p>
+          <dl>
+            <div class="org-card__row"><dt class="label" data-i18n="org.structure">Structure</dt><dd>NEUILLE PRIME ESPORT GAMING COMPANY</dd></div>
+            <div class="org-card__row"><dt class="label" data-i18n="org.games">Games</dt><dd>Rocket League / League of Legends</dd></div>
+            <div class="org-card__row"><dt class="label" data-i18n="org.region">Region</dt><dd data-i18n="org.regionValue">Alsace, France</dd></div>
+            <div class="org-card__row"><dt class="label" data-i18n="org.founded">Founded</dt><dd>YOUR-YEAR</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="games" aria-labelledby="games-title">
       <div class="container">
-        <h1>NEUILLE PRIME</h1>
-        <p data-i18n="hero.line">Rocket League and League of Legends. Built in Alsace.</p>
+        <p class="label games__intro" id="games-title" data-i18n="games.intro">Two games. One roster.</p>
+        <div class="games__grid">
+          <article class="game">
+            <h2>Rocket League</h2>
+            <p data-i18n="games.rl.line">Three players, one coach, 3v3.</p>
+            <a class="mono-link" href="./roster.html#rl" aria-label="Rocket League roster" data-i18n-attr="aria-label:games.rl.aria"><span data-i18n="games.link">Roster</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+          </article>
+          <article class="game">
+            <h2>League of Legends</h2>
+            <p data-i18n="games.lol.line">Five players, one coach, every lane covered.</p>
+            <a class="mono-link" href="./roster.html#lol" aria-label="League of Legends roster" data-i18n-attr="aria-label:games.lol.aria"><span data-i18n="games.link">Roster</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="roster-teaser" aria-labelledby="teaser-title">
+      <div class="container reveal">
+        <div class="roster-teaser__head">
+          <h2 id="teaser-title" data-i18n="teaser.title">Who plays for NP67</h2>
+          <p class="label" data-i18n="teaser.count">8 players · 2 games</p>
+        </div>
+        <div class="rail" role="region" tabindex="0" aria-label="Player preview, scrolls sideways" data-i18n-attr="aria-label:teaser.rail">
+          <ul class="rail__list" role="list">
+            <li class="tile"><div class="initials" aria-hidden="true">P1</div><p class="tile__tag">YOUR-TAG-1</p><p class="label tile__role"><span data-i18n="role.player">Player</span> · RL</p></li>
+            <li class="tile"><div class="initials" aria-hidden="true">P2</div><p class="tile__tag">YOUR-TAG-2</p><p class="label tile__role"><span data-i18n="role.player">Player</span> · RL</p></li>
+            <li class="tile"><div class="initials" aria-hidden="true">P3</div><p class="tile__tag">YOUR-TAG-3</p><p class="label tile__role"><span data-i18n="role.player">Player</span> · RL</p></li>
+            <li class="tile"><div class="initials" aria-hidden="true">P4</div><p class="tile__tag">YOUR-TAG-4</p><p class="label tile__role"><span data-i18n="role.top">Top</span> · LoL</p></li>
+            <li class="tile"><div class="initials" aria-hidden="true">P5</div><p class="tile__tag">YOUR-TAG-5</p><p class="label tile__role"><span data-i18n="role.jungle">Jungle</span> · LoL</p></li>
+            <li class="tile"><div class="initials" aria-hidden="true">P6</div><p class="tile__tag">YOUR-TAG-6</p><p class="label tile__role"><span data-i18n="role.mid">Mid</span> · LoL</p></li>
+            <li class="tile tile--more"><a href="./roster.html"><span data-i18n="teaser.more">Full roster</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-teaser" aria-labelledby="about-title">
+      <div class="container about-teaser__grid reveal">
+        <div>
+          <h2 id="about-title" data-i18n="aboutTeaser.title">NP67 in short</h2>
+          <p data-i18n="aboutTeaser.body">NEUILLE PRIME is a multigaming esports org from Alsace, France, playing under the tag NP67. It fields a Rocket League roster and a League of Legends roster, each with its own coach. Players, coaches and staff sit in one structure: NEUILLE PRIME ESPORT GAMING COMPANY.</p>
+          <a class="mono-link" href="./about.html"><span data-i18n="aboutTeaser.link">About NP67</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+        </div>
+        <dl class="stats">
+          <div class="stats__row"><dt class="label" data-i18n="org.games">Games</dt><dd>2</dd></div>
+          <div class="stats__row"><dt class="label" data-i18n="stats.players">Players</dt><dd>8</dd></div>
+          <div class="stats__row"><dt class="label" data-i18n="stats.coaches">Coaches</dt><dd>2</dd></div>
+          <div class="stats__row"><dt class="label" data-i18n="stats.staff">Staff</dt><dd>3</dd></div>
+          <div class="stats__row"><dt class="label" data-i18n="org.region">Region</dt><dd>Alsace</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contact-band" aria-labelledby="contact-title">
+      <div class="container reveal">
+        <h2 id="contact-title" data-i18n="contact.title">Get in touch</h2>
+        <p data-i18n="contact.line">Tryouts, partnerships or content: email us or find us on Discord.</p>
+        <div class="contact-band__actions">
+          <a class="btn" href="mailto:YOUR-EMAIL@example.com"><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="14" height="10" rx="1.5"/><path d="M3.5 6l6.5 5 6.5-5"/></svg><span data-i18n="cta.email">Email NP67</span></a>
+          <a class="btn btn--primary" href="https://discord.gg/YOUR-INVITE"><span data-i18n="cta.discord">Join the Discord</span><svg class="icon" viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 10h12M11 5l5 5-5 5"/></svg></a>
+        </div>
       </div>
     </section>
   </main>
