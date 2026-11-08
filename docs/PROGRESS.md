@@ -32,3 +32,4 @@ One line per sub-step: milestone | sub-step | status | next.
 - M8 | user request: News page (6 templates incl. 3 roster variants, older posts, click-to-load YouTube, localised dates), docs/POSTS.md, check rule 15, staff count sync | done | user writes first post via docs/POSTS.md
 - M9 | TikTok footer + roster slots (hidden placeholders); fixed duplicate post id and Bot role key in owner's posts | done | owner: TikTok handle, Dev Boost wording
 - M10 | roster roles/icons aligned per section (subgrid) | done | —
+- M11 | news: posts moved inside feed list, labelledby fixed, check rule 15 extended | done | —

@@ -296,7 +296,12 @@ if (pages["news.html"]) {
     if (date > prev) fail(15, "news.html", `${id} (${date}) is newer than the post above it; newest posts go first`);
     prev = date;
   }
+  const feed = pages["news.html"].match(/<ol class="feed__list"[^>]*>([\s\S]*)<\/ol>/);
+  const inside = feed ? (feed[1].match(/<article class="post/g) || []).length : 0;
+  const total = (pages["news.html"].match(/<article class="post/g) || []).length;
+  if (inside !== total) fail(15, "news.html", `${total - inside} post(s) are outside <ol class="feed__list">; paste posts below the NEW POSTS GO HERE comment`);
   for (const m of pages["news.html"].matchAll(/<article class="post[^"]*" id="(post-[^"]+)"[\s\S]*?<\/article>/g)) {
+    if (!m[0].includes(`aria-labelledby="${m[1]}-title"`)) fail(15, "news.html", `${m[1]}: aria-labelledby must be ${m[1]}-title`);
     if (!m[0].includes(`href="#${m[1]}"`)) fail(15, "news.html", `${m[1]}: date link must point to #${m[1]}`);
     if (!m[0].includes(`id="${m[1]}-title"`)) fail(15, "news.html", `${m[1]}: title id must be ${m[1]}-title`);
     for (const v of m[0].matchAll(/data-video="([^"]+)"/g))

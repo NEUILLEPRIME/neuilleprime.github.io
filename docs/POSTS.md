@@ -7,7 +7,7 @@ The News page (`news.html`, "News" / "Actus") lists posts newest first. Every po
 1. **Pick a post id**: `YYYY-MM-DD-short-name`, lowercase, no spaces or accents, e.g. `2026-11-08-my-post`. It must be unique. It becomes the post's link: `https://neuilleprime.github.io/news.html#post-2026-11-08-my-post`.
 2. **Copy a template** below and replace every `2026-11-08-my-post` with your id (each template uses it 3–6 times; use find-and-replace).
 3. **Set the date** in the `<time>` tag: `datetime="2026-11-08"` (machine date, `YYYY-MM-DD`) and the text `8 Nov 2026` (English, day + 3-letter month + year). The French date is generated automatically.
-4. **Paste the block in `news.html`** right after the line `<ol class="feed__list" role="list" data-feed>`, so the newest post is first. The check script fails if a post is newer than the one above it.
+4. **Paste the block in `news.html`** right below the comment `<!-- NEW POSTS GO HERE … -->`, which sits just inside `<ol class="feed__list" role="list" data-feed>`, so the newest post is first. Posts pasted above that `<ol>` line show a stray bullet and lose their spacing; the check script catches it. The check script fails if a post is newer than the one above it.
 5. **Write the text** in the HTML (English) and add the matching keys to `i18n.js`: once in the `en` part, once in the `fr` part (French uses "tu"). The English in the HTML must match the `en` value exactly. Put them right after the `/* ---- news ---- */` keys.
 6. **Images** go in `assets/img/posts/` as `.webp` (or `.jpg`/`.png`), under 150 KB. Wide images: 1200 px wide. Gallery images: about 800 px wide. Put the real width and height in the `<img>` tag (any proportional pair, e.g. `1200`/`675`).
 7. Run `node scripts/check.mjs`, then commit and push:
