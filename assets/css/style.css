@@ -595,6 +595,16 @@ strong { font-weight: 500; }
   .squad--lol .row { grid-template-columns: 96px minmax(0, 1fr) 180px auto; }
 }
 
+/* ---- Roster: rows in a section share one set of columns, so roles and icons line up
+   whatever number of links each person has. Older browsers keep per-row columns. ---- */
+@supports (grid-template-columns: subgrid) {
+  @media (min-width: 600px) {
+    /* first track = 96px photo + the row's 20px padding + 1px border (a subgrid's padding sits inside its edge tracks) */
+    .squad .squad__list { display: grid; grid-template-columns: 117px minmax(0, 1fr) auto auto; column-gap: 24px; }
+    .squad .squad__list > .row { grid-column: 1 / -1; grid-template-columns: subgrid; }
+  }
+}
+
 /* ---- Roster: staff — compact two-column rows ---- */
 .squad--staff .squad__head { margin-bottom: 24px; }
 .squad--staff .squad__head h2 { font-size: var(--fs-h2); }
