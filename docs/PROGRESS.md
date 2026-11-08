@@ -30,3 +30,4 @@ One line per sub-step: milestone | sub-step | status | next.
 - M6 | 2 HANDOFF, checkpoint, final commit | done | none — build complete; human: replace YOUR- values, push, enable Pages
 - M7 | user request: per-person YouTube/Instagram/RL Tracker/dpm.lol slots, portraits, logo mark, PNG favicon, content sync, check hardening; screenshots + Lighthouse 99-100 | done | user fills link slots / adds photos
 - M8 | user request: News page (6 templates incl. 3 roster variants, older posts, click-to-load YouTube, localised dates), docs/POSTS.md, check rule 15, staff count sync | done | user writes first post via docs/POSTS.md
+- M9 | TikTok footer + roster slots (hidden placeholders); fixed duplicate post id and Bot role key in owner's posts | done | owner: TikTok handle, Dev Boost wording

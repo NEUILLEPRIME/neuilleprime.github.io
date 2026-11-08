@@ -71,6 +71,7 @@ var NP67_I18N = {
     "social.x": "NPEGC on X",
     "social.twitch": "NPEGC on Twitch",
     "social.youtube": "NPEGC on YouTube",
+    "social.tiktok": "NPEGC on TikTok",
     "social.instagram": "NPEGC on Instagram",
 
     /* ---- home ---- */
@@ -116,6 +117,7 @@ var NP67_I18N = {
     "role.coach": "Coach",
     "role.adc": "ADC",
     "role.support": "Support",
+    "role.bot": "Bot",
     "role.manager": "Manager",
     "role.media": "Media",
     "role.operations": "Operations",
@@ -214,6 +216,7 @@ var NP67_I18N = {
     "social.x": "NPEGC sur X",
     "social.twitch": "NPEGC sur Twitch",
     "social.youtube": "NPEGC sur YouTube",
+    "social.tiktok": "NPEGC sur TikTok",
     "social.instagram": "NPEGC sur Instagram",
 
     "hero.line": "Rocket League et League of Legends. Depuis la France.",
@@ -258,6 +261,7 @@ var NP67_I18N = {
     "role.coach": "Coach",
     "role.adc": "ADC",
     "role.support": "Support",
+    "role.bot": "Bot",
     "role.manager": "Manager",
     "role.media": "Média",
     "role.operations": "Opérations",

@@ -44,7 +44,8 @@ Every value you must replace starts with `YOUR-`. Search the whole folder for `Y
 | `YOUR-TAG-1` … `YOUR-TAG-8` | `index.html` roster rail (1–6), `roster.html` (all) | Player gamertags: YOUR-TAG-1, YOUR-TAG-2, YOUR-TAG-3 (Rocket League); YOUR-TAG-4 (Top), YOUR-TAG-5 (Jungle), YOUR-TAG-6 (Mid), YOUR-TAG-7 (ADC), YOUR-TAG-8 (Support). On `roster.html` each tag is also used in that player's X / Twitch URL: replace those with the real profile links. |
 | `YOUR-COACH-RL`, `YOUR-COACH-LOL` | `roster.html` | Coach handles (Rocket League, League of Legends) and their X / Twitch URLs |
 | `YOUR-STAFF-1`, `YOUR-STAFF-2`, `YOUR-STAFF-3` | `roster.html` (staff) | Manager, media and operations staff names or handles and their X URLs |
-| `YOUR-X`, `YOUR-TWITCH`, `YOUR-YOUTUBE`, `YOUR-INSTAGRAM` | `roster.html`, inside each person's hidden link slots | That person's X / Twitch / YouTube / Instagram link (see "Player links") |
+| `YOUR-X`, `YOUR-TWITCH`, `YOUR-YOUTUBE`, `YOUR-INSTAGRAM`, `YOUR-TIKTOK` | `roster.html`, inside each person's hidden link slots | That person's X / Twitch / YouTube / Instagram / TikTok link (see "Player links") |
+| `YOUR-TIKTOK` (footer) | all 5 pages: footer TikTok icon (`https://www.tiktok.com/@YOUR-TIKTOK`), hidden until filled | The org's TikTok handle; then delete `hidden` from that footer `<li>` on every page |
 | `YOUR-EPIC-NAME` | `roster.html`, Rocket League players' hidden "RL Tracker" slot | Their Rocket League Tracker profile link (see "Player links") |
 | `YOUR-RIOT-ID` | `roster.html`, League of Legends players' hidden "DPM.LOL" slot | Their dpm.lol profile link (see "Player links") |
 | `YOUR-VIDEO-ID` | `news.html` (commented-out video example), `docs/POSTS.md` | A YouTube video ID, only when you use the video example |
@@ -60,9 +61,9 @@ Also replace (not `YOUR-` prefixed because they are readable stand-ins):
 
 Names and tags are not translated. Roles (Player / Joueur, Media / Média …) are.
 
-## Player links (X, Twitch, YouTube, Instagram, RL Tracker, dpm.lol)
+## Player links (X, Twitch, YouTube, Instagram, TikTok, RL Tracker, dpm.lol)
 
-Every person on `roster.html` has the same set of link slots, in this order: X, Twitch, YouTube, Instagram, plus **RL Tracker** for Rocket League players and **DPM.LOL** for League of Legends players (coaches and staff have no tracker slot). A slot you have not filled is marked `hidden`, so it never shows on the site.
+Every person on `roster.html` has the same set of link slots, in this order: X, Twitch, YouTube, Instagram, TikTok, plus **RL Tracker** for Rocket League players and **DPM.LOL** for League of Legends players (coaches and staff have no tracker slot). A slot you have not filled is marked `hidden`, so it never shows on the site.
 
 To turn a link on:
 

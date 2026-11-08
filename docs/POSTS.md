@@ -182,7 +182,7 @@ One card with the person's portrait (or initials block), tag, role and game, plu
 | Leaves | `move move--leave` | Leaves / Quitte | `news.move.leave` |
 | Role change | `move move--change` | Role change / Changement de rôle | `news.move.change` |
 
-Badge texts are shared; nothing to add for them. Role names reuse the roster keys: `role.player`, `role.coach`, `role.top`, `role.jungle`, `role.mid`, `role.adc`, `role.support`, `role.manager`, `role.media`, `role.operations`. Use the portrait file from `assets/img/portraits/` (exact capitalisation), or replace the `<img class="portrait" …>` with `<div class="initials" aria-hidden="true">AB</div>`.
+Badge texts are shared; nothing to add for them. Role names reuse the roster keys: `role.player`, `role.coach`, `role.top`, `role.jungle`, `role.mid`, `role.adc`, `role.bot`, `role.support`, `role.manager`, `role.media`, `role.operations`. Use the portrait file from `assets/img/portraits/` (exact capitalisation), or replace the `<img class="portrait" …>` with `<div class="initials" aria-hidden="true">AB</div>`.
 
 ### Joins
 
