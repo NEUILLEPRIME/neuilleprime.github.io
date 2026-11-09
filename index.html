@@ -195,7 +195,8 @@
     </section>
 
     <section class="contact-band" aria-labelledby="contact-title">
-      <div class="container reveal">
+      <div class="container contact-band__grid reveal">
+        <div class="contact-band__copy">
         <h2 id="contact-title" data-i18n="contact.title">Get in touch</h2>
         <p data-i18n="contact.line">Tryouts, partnerships or content: email us or find us on Discord.</p>
         <div class="contact-band__actions">
@@ -211,6 +212,13 @@
               <path d="M4 10h12M11 5l5 5-5 5" />
             </svg></a>
         </div>
+        </div>
+        <aside class="discord-card" aria-labelledby="discord-card-title" data-discord-widget="1568592885614645378">
+          <p class="label discord-card__head"><span id="discord-card-title">Discord</span><span class="discord-card__live" data-discord-live hidden><span class="discord-card__dot" aria-hidden="true"></span><span data-i18n="discord.live">Live</span></span></p>
+          <p class="discord-card__name" translate="no" data-discord-name>NPEGC: Community Server</p>
+          <p class="discord-card__count" data-discord-count data-i18n="discord.fallback">The NPEGC community hangs out here.</p>
+          <ul class="discord-card__members" role="list" aria-label="Members online now" data-i18n-attr="aria-label:discord.members" data-discord-members hidden></ul>
+        </aside>
       </div>
     </section>
   </main>

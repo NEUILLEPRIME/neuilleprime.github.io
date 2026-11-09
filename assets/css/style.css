@@ -516,11 +516,39 @@ strong { font-weight: 500; }
   .about-teaser__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 4fr); gap: 96px; align-items: start; }
 }
 
-/* ---- Home: contact band (centered section 1 of 2) ---- */
-.contact-band { padding-block: var(--space-m); border-top: 1px solid var(--line); text-align: center; }
+/* ---- Home: contact band + live Discord card ---- */
+.contact-band { padding-block: var(--space-m); border-top: 1px solid var(--line); }
+.contact-band__grid { display: grid; gap: 40px; }
+@media (min-width: 900px) {
+  .contact-band__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: 64px; }
+}
 .contact-band h2 { font-size: var(--fs-display); }
-.contact-band p { margin: 16px auto 32px; color: var(--muted); }
-.contact-band__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.contact-band__copy > p { margin: 16px 0 32px; color: var(--muted); }
+.contact-band__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.discord-card { padding: 24px; border: 1px solid var(--line); background: var(--panel); }
+.discord-card__head { display: flex; justify-content: space-between; gap: 16px; color: var(--muted); }
+.discord-card__live { display: inline-flex; align-items: center; gap: 8px; color: var(--paper); }
+.discord-card__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+.discord-card__name { margin-top: 16px; font-family: var(--font-display); font-size: 28px; line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase; }
+.discord-card__count { margin-top: 8px; color: var(--muted); }
+.discord-card__members { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.discord-card__members li { position: relative; width: 40px; height: 40px; }
+.discord-card__members img { width: 40px; height: 40px; border-radius: 50%; background: var(--ink); }
+.discord-card__status { position: absolute; right: -2px; bottom: -2px; width: 14px; height: 14px; border: 3px solid var(--panel); border-radius: 50%; background: var(--muted); }
+.discord-card__status--online { background: var(--accent); }
+.discord-card__more {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-label);
+  color: var(--muted);
+}
 
 /* ---- Inner pages: page head ---- */
 .page-head { padding-block: var(--space-m); }

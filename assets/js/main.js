@@ -82,3 +82,61 @@
     frame.focus();
   });
 })();
+
+/* Home: live Discord card. Reads Discord's public widget JSON (cached by Discord for
+   ~5 min). Without JS or if Discord is unreachable, the static text stays. */
+(function () {
+  var card = document.querySelector("[data-discord-widget]");
+  if (!card || !window.fetch) return;
+  var data = null;
+  var MAX = 7;   // 7 avatars + "+N" fit one line in the desktop card
+  function t(key, n) {
+    var lang = document.documentElement.lang === "fr" ? "fr" : "en";
+    var s = (window.NP67_I18N && NP67_I18N[lang] && NP67_I18N[lang][key]) || "";
+    return s.replace("{n}", String(n));
+  }
+  function render() {
+    if (!data) return;
+    var n = data.presence_count || 0;
+    card.querySelector("[data-discord-count]").textContent = t(n === 1 ? "discord.onlineOne" : "discord.online", n);
+    card.querySelector("[data-discord-live]").hidden = n === 0;
+  }
+  function members(list) {
+    var ul = card.querySelector("[data-discord-members]");
+    ul.innerHTML = "";
+    var shown = 0;
+    for (var i = 0; i < list.length && shown < MAX; i++) {
+      var m = list[i];
+      if (!m.avatar_url || m.avatar_url.indexOf("https://cdn.discordapp.com/") !== 0) continue;
+      var li = document.createElement("li");
+      var img = document.createElement("img");
+      img.src = m.avatar_url; img.alt = ""; img.width = 40; img.height = 40; img.loading = "lazy"; img.decoding = "async";
+      img.setAttribute("aria-hidden", "true");
+      var dot = document.createElement("span");
+      dot.className = "discord-card__status" + (m.status === "online" ? " discord-card__status--online" : "");
+      dot.setAttribute("aria-hidden", "true");
+      var name = document.createElement("span");
+      name.className = "visually-hidden"; name.setAttribute("translate", "no"); name.textContent = m.username || "";
+      li.appendChild(img); li.appendChild(dot); li.appendChild(name);
+      ul.appendChild(li); shown++;
+    }
+    var rest = (data.presence_count || list.length) - shown;
+    if (rest > 0 && shown > 0) {
+      var more = document.createElement("li");
+      more.className = "discord-card__more"; more.textContent = "+" + rest;
+      ul.appendChild(more);
+    }
+    ul.hidden = shown === 0;
+  }
+  fetch("https://discord.com/api/guilds/" + card.getAttribute("data-discord-widget") + "/widget.json")
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (json) {
+      if (!json || typeof json.presence_count !== "number") return;
+      data = json;
+      if (json.name) card.querySelector("[data-discord-name]").textContent = json.name;
+      members(json.members || []);
+      render();
+      document.addEventListener("np67:lang", render);
+    })
+    .catch(function () { /* keep the static text */ });
+})();

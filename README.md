@@ -97,6 +97,16 @@ Current photos: `Enrtarr.webp` (Enrtarr on RL, LoL and staff), `maaple.webp` (ma
 
 Posts live in `news.html` (text in English) and `assets/js/i18n.js` (EN + FR keys). Step-by-step guide and copy-paste templates for every post type (text, text + image, YouTube video, gallery, roster joins / leaves / role change): **[`docs/POSTS.md`](docs/POSTS.md)**. Seven commented-out examples sit in `news.html` for local previews; `YOUR-VIDEO-ID` in the video example is the YouTube video ID to replace.
 
+## Discord card (Home)
+
+The "Get in touch" band on Home shows a live card for the NPEGC Discord: server name, how many members are online, and up to 7 online avatars with a status dot (accent = online, grey = idle / do not disturb). It reads Discord's public widget data (`https://discord.com/api/guilds/1568592885614645378/widget.json`), which Discord refreshes about every 5 minutes, so the count is near-live, not instant.
+
+- It needs **Server Settings → Widget → Enable Server Widget** to stay on in Discord. If the widget is turned off, Discord is down, or JavaScript is off, the card simply shows "The NPEGC community hangs out here." and the "Join the Discord" button still works.
+- The join button uses the invite in `index.html` (`https://discord.gg/uu6aJ75XPD`), not the widget: your widget has no invite channel set.
+- Only members who are online and visible appear, as in Discord's own widget. Members can hide themselves in Discord (Privacy settings).
+- Another server: change `data-discord-widget="1568592885614645378"` on the card in `index.html`.
+- Texts: `discord.*` keys in `assets/js/i18n.js` (`{n}` is replaced by the number).
+
 ## Logo, wordmark and accent color
 
 - Drop the logo into `assets/img/` as `logo.svg` (preferred) or `logo.png`. See `assets/img/README.md`.

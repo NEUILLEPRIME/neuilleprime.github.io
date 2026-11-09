@@ -33,3 +33,4 @@ One line per sub-step: milestone | sub-step | status | next.
 - M9 | TikTok footer + roster slots (hidden placeholders); fixed duplicate post id and Bot role key in owner's posts | done | owner: TikTok handle, Dev Boost wording
 - M10 | roster roles/icons aligned per section (subgrid) | done | —
 - M11 | news: posts moved inside feed list, labelledby fixed, check rule 15 extended | done | —
+- M12 | Discord live card on Home (widget.json), fallback, EN/FR, tests live/12 members/down/no-JS; Lighthouse index 99/100 | done | —

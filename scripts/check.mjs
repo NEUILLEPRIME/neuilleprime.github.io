@@ -99,6 +99,8 @@ for (const [p, html] of Object.entries(pages)) {
   if (ogT !== undefined && norm(ogT) !== norm(en[`meta.${pid}.title`] || "")) fail(2, p, "og:title ≠ en meta title");
   if (ogD !== undefined && norm(ogD) !== norm(en[`meta.${pid}.description`] || "")) fail(2, p, "og:description ≠ en meta description");
 }
+for (const f of jsFiles.filter((f) => !f.endsWith("i18n.js")))
+  for (const m of read(f).matchAll(/"([a-z][\w-]*(?:\.[\w-]+)+)"/g)) if (m[1] in en) used.add(m[1]);  // keys read by scripts
 for (const k of enKeys) if (!used.has(k)) warn(1, "i18n.js", `key "${k}" unused by any page`);
 
 // ---------------------------------------------------------------- 3  no gradients
