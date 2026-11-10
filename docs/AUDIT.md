@@ -73,3 +73,13 @@ Audited 2026-11-07 against the 30 checks in `docs/source/website-visuals-test.tx
 - FAQ heading "Questions" (generic) → "Tryouts, partners, content" / "Tryouts, partenaires, contenu".
 - Facts heading "The structure" (abstract) → "NP67 on paper" / "NP67 sur le papier".
 - About contact line was two sentences → one: "Email for tryouts, partnerships and press; Discord for everything else."
+
+---
+
+## Addendum — 2026-11-10 redesign (re-check of the checks the new look touches)
+
+- **Colors 100.** Still main + grayscale + 1 accent: five navy/ice neutrals and one accent (`--accent #9ED8F0`); `--glow` is a translucent tint of `--paper`, used only for text-shadow on script lettering. No gradients (rule 3), `box-shadow` still only on the sticky header (rule 5), no alternating section backgrounds.
+- **Typography 100.** No Inter/Roboto/Open Sans; three distinct styles (Lemon Milk caps headings, Estrella Early script titles, IBM Plex Sans body); headings line-height 1.0–1.1 vs body 1.65; explicit letter-spacing on display (0.02em) and labels (0.08em).
+- **Images & Icons 100.** Images are now real brand artwork (banner, lightning, halftone rose) and each is used in one role; portraits are per person (Enrtarr appears in each of his roles, not as reused stock). No AI-artifact illustrations, no gradient placeholders.
+- **Layout / Copy / UX 100.** Unchanged structure; the Home first viewport shows the banner (name), the positioning line and "See the roster" at 360×740 and 1280×720; only one centered section remains (404).
+- Verified: all 5 pages × 360/768/1280/1920 × EN/FR with no overflow, clipping, small targets or console errors; Lighthouse mobile 97–98 performance, 100 accessibility / best practices (copy, before removing `noindex`).

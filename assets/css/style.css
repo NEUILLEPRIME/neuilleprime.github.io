@@ -8,21 +8,28 @@
 /* ==========================================================================
    1. Tokens
    ========================================================================== */
+/* Brand fonts, self-hosted (subset Latin). Check the licences before publishing: see README. */
+@font-face { font-family: "NP Display"; src: url("../fonts/lemonmilk-bold.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "NP Label"; src: url("../fonts/lemonmilk-regular.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "NP Script"; src: url("../fonts/estrella-early.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
 :root {
-  --ink: #0B0B0C;
-  --panel: #141416;
-  --line: #2A2A2E;
-  --paper: #F1EFEA;
-  --muted: #8C8C93;
-  --accent: #FF3D00;           /* the ONLY place accent is defined; logo can override */
+  --ink: #05080D;              /* night navy-black of the banner */
+  --panel: #0B131C;
+  --line: #1C2B3B;
+  --paper: #EAF2F8;            /* icy white of the lettering */
+  --muted: #8494A6;
+  --accent: #9ED8F0;           /* lightning ice blue: the ONLY accent */
+  --glow: #CFEFFF59;           /* white-blue glow behind script lettering (text-shadow only) */
 
-  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-display: "NP Display", "Arial Black", sans-serif;     /* Lemon Milk Bold */
   --font-body: "IBM Plex Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-mono: "NP Label", "Arial", sans-serif;                 /* Lemon Milk Regular: labels, nav, buttons */
+  --font-script: "NP Script", "NP Display", cursive;            /* Estrella Early: letters + accents only */
 
-  --fs-hero: clamp(48px, 7vw, 72px);
-  --fs-display: clamp(40px, 5vw, 48px);
-  --fs-h2: 36px;
+  --fs-hero: clamp(56px, 8vw, 96px);    /* script titles */
+  --fs-display: clamp(26px, 3.6vw, 38px);
+  --fs-h2: 28px;
   --fs-body: 17px;
   --fs-label: 12px;
 
@@ -859,6 +866,70 @@ strong { font-weight: 500; }
   .move .initials, .move .portrait { width: 64px; height: 64px; font-size: 28px; }
   .move__tag { font-size: 26px; }
 }
+
+/* ==========================================================================
+   6b. New look — assets from new-look-copy/ (banner, lightning, script)
+   ========================================================================== */
+
+/* Lemon Milk is wide: lighter tracking than the old condensed display face. */
+h1, h2, h3, .display { letter-spacing: 0.02em; line-height: 1.1; }
+.label, .site-nav a, .btn, .mono-link, .lang-toggle button { letter-spacing: 0.08em; }
+.row__tag, .tile__tag, .move__tag, .discord-card__name, .stats dd { letter-spacing: 0.02em; }
+.row__tag { font-size: 24px; }
+@media (max-width: 599px) {
+  .row__tag, .row--feature .row__tag { font-size: 20px; }
+  .staff-row { grid-template-columns: 64px minmax(0, 1fr); }
+  .staff-row .social { grid-column: 2; margin: -8px 0 -8px -12px; }
+  .staff-row .row__tag { font-size: 18px; }
+}
+.tile__tag { font-size: 19px; }
+.stats dd { font-size: 28px; }
+.move__tag { font-size: 24px; }
+.discord-card__name { font-size: 20px; }
+.org-card dd { font-size: 15px; }
+
+/* Script lettering with the soft white-blue glow of the banner. */
+.script,
+.page-head h1 {
+  font-family: var(--font-script);
+  font-size: var(--fs-hero);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  text-shadow: 0 0 2px var(--glow), 0 0 22px var(--glow);
+  padding-left: 0.14em;          /* the script's opening swash hangs left; keep it inside the column */
+}
+
+.wordmark { font-family: var(--font-script); font-size: 38px; letter-spacing: 0; text-transform: none; text-shadow: 0 0 16px var(--glow); }
+@media (max-width: 719px) { .wordmark { font-size: 30px; letter-spacing: 0; } }
+
+/* Page titles sit on the lightning from the Roster Reveal artwork, dimmed. */
+.page-head { position: relative; isolation: isolate; overflow: hidden; border-bottom: 1px solid var(--line); }
+.page-head::before,
+.page-head::after { content: ""; position: absolute; inset: 0; z-index: -1; }
+.page-head::before { background: var(--ink) url("../img/brand/lightning-1600.webp") center 40% / cover no-repeat; opacity: 0.9; }
+.page-head::after { background: var(--ink); opacity: 0.42; }
+@media (max-width: 799px) { .page-head::before { background-image: url("../img/brand/lightning-800.webp"); } }
+.page-head__count { background: var(--ink); }
+.page-head .page-head__sub { color: var(--paper); text-shadow: 0 1px 14px var(--ink), 0 0 4px var(--ink); }
+
+/* Home hero: the banner art carries the name; the copy and org card sit below it. */
+.hero.hero--banner { display: block; min-height: 0; padding-block: 0 var(--space-m); }
+.hero__banner { border-bottom: 1px solid var(--line); background: var(--ink); }
+.hero__banner img { width: 100%; height: auto; max-height: 64vh; object-fit: cover; }
+.hero--banner .hero__grid { padding-top: var(--space-s); }
+.hero--banner .hero__line { font-size: 22px; max-width: 30ch; color: var(--paper); }
+
+/* 404: the halftone rose. */
+.lost { position: relative; isolation: isolate; overflow: hidden; }
+.lost::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ink) url("../img/brand/rose-halftone-600.webp") center / min(560px, 90vw) no-repeat; opacity: 0.35; }
+.lost h1 { text-shadow: 0 0 2px var(--glow), 0 0 26px var(--glow); }
+
+/* Panels pick up the ice edge on hover, like the lightning outlines. */
+.row:hover, .staff-row:hover, .tile:hover { border-color: var(--accent); }
+
+/* Lemon Milk is wide: staff stay in one column until there is room for two. */
+@media (min-width: 768px) and (max-width: 1099px) { .staff-list { grid-template-columns: 1fr; } }
 
 /* ==========================================================================
    7. Utilities

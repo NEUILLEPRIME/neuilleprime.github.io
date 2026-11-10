@@ -4,3 +4,5 @@ node_modules/
 *.log
 .DS_Store
 Thumbs.db
+# design source files (PSD, raw .otf fonts) and the old preview copy: never publish
+new-look-copy/

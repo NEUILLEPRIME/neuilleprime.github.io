@@ -10,8 +10,8 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PAGES = ["index.html", "roster.html", "news.html", "about.html", "404.html"];
 const PAGE_ID = { "index.html": "home", "roster.html": "roster", "news.html": "news", "about.html": "about", "404.html": "404" };
-const TOKENS = { ink: "#0b0b0c", panel: "#141416", line: "#2a2a2e", paper: "#f1efea", muted: "#8c8c93", accent: "#ff3d00" };
-const FONTS_HREF = "https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500&display=swap";
+const TOKENS = { ink: "#05080d", panel: "#0b131c", line: "#1c2b3b", paper: "#eaf2f8", muted: "#8494a6", accent: "#9ed8f0", glow: "#cfefff59" };
+const FONTS_HREF = "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap";
 
 const fails = [];
 const warns = [];
@@ -115,7 +115,7 @@ for (const f of cssFiles) {
   const css = read(f).replace(/\/\*[\s\S]*?\*\//g, "");
   const roots = [...css.matchAll(/:root\s*\{([^}]*)\}/g)].map((m) => m[1]).join("\n");
   for (const [name, hex] of Object.entries(TOKENS)) {
-    const m = roots.match(new RegExp(`--${name}\\s*:\\s*(#[0-9a-fA-F]{6})\\s*;`));
+    const m = roots.match(new RegExp(`--${name}\\s*:\\s*(#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?)\\s*;`));
     if (!m || m[1].toLowerCase() !== hex) fail(4, f, `token --${name} missing or ≠ ${hex}`);
   }
   for (const h of roots.match(HEX) || []) if (!Object.values(TOKENS).includes(h.toLowerCase())) fail(4, f, `non-token hex ${h} in :root`);
@@ -134,7 +134,7 @@ for (const f of jsFiles) {
 for (const [p, html] of Object.entries(pages)) {
   if (/\sstyle="|<style\b/i.test(html)) fail(4, p, "inline style attribute or <style> block (colors must come from style.css)");
   const tc = html.match(/<meta name="theme-color" content="([^"]*)"/);
-  if (!tc || tc[1].toLowerCase() !== TOKENS.ink) fail(4, p, "theme-color must be --ink #0B0B0C");
+  if (!tc || tc[1].toLowerCase() !== TOKENS.ink) fail(4, p, "theme-color must be --ink #05080D");
 }
 const iconRefs = new Set(Object.values(pages).flatMap((h) => [...h.matchAll(/<link rel="icon" href="\.\/([^"]+\.svg)"/g)].map((m) => m[1])));
 for (const ic of iconRefs) if (exists(ic)) {
@@ -150,6 +150,7 @@ for (const f of cssFiles) {
   for (const m of css.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
     const sel = m[1].trim(), body = m[2];
     for (const d of body.matchAll(/box-shadow\s*:\s*([^;]+)/g)) if (d[1].trim() !== "none") shadowed.push(sel);
+    if (sel.startsWith("@font-face")) continue;
     if (sel === ":root") {
       for (const d of body.matchAll(/--font-[\w-]+\s*:\s*([^;]+)/g)) {
         const first = d[1].split(",")[0].replace(/["']/g, "").trim().toLowerCase();
@@ -158,7 +159,7 @@ for (const f of cssFiles) {
       continue;
     }
     for (const d of body.matchAll(/font-family\s*:\s*([^;]+)/g))
-      if (!/^(var\(--font-(display|body|mono)\)|inherit)$/.test(d[1].trim())) fail(6, f, `${sel}: font-family "${d[1].trim()}" must be a font token`);
+      if (!/^(var\(--font-(display|body|mono|script)\)|inherit)$/.test(d[1].trim())) fail(6, f, `${sel}: font-family "${d[1].trim()}" must be a font token`);
     for (const d of body.matchAll(/(?:^|[;\s])font\s*:\s*([^;]+)/g))
       if (d[1].trim() !== "inherit") fail(6, f, `${sel}: font shorthand "${d[1].trim()}" not allowed`);
   }
@@ -166,7 +167,7 @@ for (const f of cssFiles) {
 }
 for (const [p, html] of Object.entries(pages)) {
   const links = [...html.matchAll(/<link rel="stylesheet" href="(https:[^"]+)"/g)].map((m) => m[1]);
-  if (links.length !== 1 || links[0] !== FONTS_HREF) fail(6, p, "Google Fonts link must be exactly the Anton / Plex Mono 500 / Plex Sans 400,500 URL");
+  if (links.length !== 1 || links[0] !== FONTS_HREF) fail(6, p, "Google Fonts link must be exactly the Plex Sans 400,500 URL (brand fonts are self-hosted)");
   if (!/<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com">/.test(html)) fail(6, p, "preconnect fonts.googleapis.com missing");
   if (!/<link rel="preconnect" href="https:\/\/fonts\.gstatic\.com" crossorigin>/.test(html)) fail(6, p, "preconnect fonts.gstatic.com crossorigin missing");
 }

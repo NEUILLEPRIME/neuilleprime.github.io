@@ -1,6 +1,6 @@
 # NEUILLE PRIME website
 
-Static, bilingual (English / French) website for **NEUILLE PRIME**, the multigaming esports org behind the tag **NP67** (Rocket League + League of Legends, France). Plain HTML, one CSS file and two small vanilla JS files: no framework, no build step, no dependencies beyond Google Fonts. It runs on GitHub Pages as a user page and also opens straight from disk.
+Static, bilingual (English / French) website for **NEUILLE PRIME**, the multigaming esports org behind the tag **NP67** (Rocket League + League of Legends, France). Plain HTML, one CSS file and two small vanilla JS files: no framework, no build step; the only outside resource is Google Fonts for body text (the brand fonts are self-hosted). It runs on GitHub Pages as a user page and also opens straight from disk.
 
 | Page | File | What it shows |
 |---|---|---|
@@ -107,12 +107,22 @@ The "Get in touch" band on Home shows a live card for the NPEGC Discord: server 
 - Another server: change `data-discord-widget="1568592885614645378"` on the card in `index.html`.
 - Texts: `discord.*` keys in `assets/js/i18n.js` (`{n}` is replaced by the number).
 
+## Look (colours, fonts, images)
+
+Redesigned on 2026-11-10 from the brand assets (banner, Roster Reveal thumbnail, rose).
+
+- **Colours** (all in `:root` at the top of `assets/css/style.css`): `--ink #05080D` night navy-black, `--panel #0B131C`, `--line #1C2B3B`, `--paper #EAF2F8` icy white, `--muted #8494A6`, and one accent `--accent #9ED8F0` ice blue. `--glow` is a see-through white-blue used only for the glow behind the script lettering.
+- **Fonts**: headings, tags and labels in **Lemon Milk** (`assets/fonts/lemonmilk-*.woff2`), page titles and the header wordmark in **Estrella Early** script (`assets/fonts/estrella-early.woff2`), body text in IBM Plex Sans (Google Fonts). The script font has letters and accents but **no digits or punctuation**, so it is only used for one-word titles; anything else falls back to Lemon Milk.
+- **Images** in `assets/img/brand/`: the Home banner (`banner-960/1920.webp`, from `NP_center.png`), the lightning behind page titles (`lightning-800/1600.webp`, top band of the Roster Reveal thumbnail), the halftone rose on the 404 page, and the link-preview image for Discord / X (`og-1200x630.jpg`, from `Social1.png`).
+- **Font licences — check before relying on them.** Lemon Milk is © MARSNEV and, as far as I know, free for personal use only; an org website can count as commercial use. Estrella Early's file carries no licence information. Self-hosting a font on a public site redistributes it.
+- The design source files (PSD, raw `.otf` fonts, original PNGs) live in `new-look-copy/`, which is in `.gitignore` so they are never pushed.
+
 ## Logo, wordmark and accent color
 
 - Drop the logo into `assets/img/` as `logo.svg` (preferred) or `logo.png`. See `assets/img/README.md`.
-- The header shows the rose mark (`assets/img/logo-mark.webp`, made from `logo.png`) next to the "NEUILLE PRIME" wordmark. To show the mark alone, delete `<span>NEUILLE PRIME</span>` from the `wordmark` link on all four pages and change the image's `alt=""` to `alt="NEUILLE PRIME"`. Remove `aria-hidden="true"` at the same time.
+- The header shows the rose mark (`assets/img/logo-mark.webp`, made from `logo.png`) next to the script "Neuille Prime" wordmark. To show the mark alone, delete `<span>Neuille Prime</span>` from the `wordmark` link on all five pages and change the image's `alt=""` to `alt="NEUILLE PRIME"`. Remove `aria-hidden="true"` at the same time.
 - Tab icons: `assets/img/favicon-32.png` and `assets/img/apple-touch-icon.png` (rose on `--ink`), both made from `logo.png`. If you change the logo, regenerate them at the same sizes.
-- The accent color is defined **once**: `--accent` in `:root` at the top of `assets/css/style.css`. Change that one hex value to match the logo. Keep it bright enough that dark `--ink` text on it stays readable (current pair ≈ 5.9:1 contrast). Do not add new colors elsewhere: `scripts/check.mjs` will fail.
+- The accent color is defined **once**: `--accent` in `:root` at the top of `assets/css/style.css`. Change that one hex value to match the logo. Keep it light enough that dark `--ink` text on it stays readable (current ice blue on ink ≈ 13:1 contrast). Do not add new colors elsewhere: `scripts/check.mjs` will fail.
 
 ## Translations (EN / FR)
 
@@ -149,9 +159,9 @@ Add a file named `CNAME` containing just the domain (e.g. `np67.gg`), push it, s
 
 ## Known limitations
 
-- **No real images yet.** Player photos, the logo and a social share image are missing; initials blocks and the text wordmark stand in. The design audit's image checks must be redone when photos are added.
-- **No `og:image`.** Links shared on Discord / X show no preview picture until you add `assets/img/og.png` (1200×630) and an `og:image` meta tag on each page (see `assets/img/README.md`).
-- **Fonts need internet.** Anton and IBM Plex load from Google Fonts. Offline (e.g. `file://` without a connection) the site falls back to system fonts.
+- **Player photos are partial.** Players without a file in `assets/img/portraits/` still show their initials block.
+- **Body font needs internet.** IBM Plex Sans loads from Google Fonts; offline it falls back to the system font. The brand fonts are local and always load.
+- **Script font limits.** Estrella Early has no digits or punctuation (see "Look").
 - **404 on nested URLs.** GitHub Pages shows `404.html` for any missing URL. For a top-level typo (`/rostr`) it is fully styled; for a nested one (`/a/b`) the relative CSS path does not resolve and the page appears unstyled (content and links still work).
 - Tested in Chromium-based browsers only. See `docs/MANUAL_TEST.md` for the Firefox / Safari / phone / live-site checklist.
 
