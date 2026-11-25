@@ -56,8 +56,8 @@ var NP67_I18N = {
       "post.example-role.p1": "Shows the old role and the new one side by side.",
     ---- end of example posts ---- */
 
-    "post.2026-11-08-gayugi-joins.title": "Gayugi joins the League of Legends roster.",
-    "post.2026-11-08-gayugi-joins.p1": "We're proud to announce that Gayugi will be joining us for the next Ligue Poro season.",
+    "post.2026-11-10-gayugi-joins.title": "Gayugi joins the League of Legends roster.",
+    "post.2026-11-10-gayugi-joins.p1": "We're proud to announce that Gayugi will be joining us for the next Ligue Poro season.",
 
     "post.2026-11-08-maaple-joins.title": "Maaple joins the League of Legends roster.",
     "post.2026-11-08-maaple-joins.p1": "We're proud to announce that maaple will be joining us for the next Ligue Poro season.",
@@ -210,8 +210,8 @@ var NP67_I18N = {
       "post.example-role.p1": "Affiche l’ancien rôle et le nouveau côte à côte.",
     ---- end of example posts ---- */
 
-    "post.2026-11-08-gayugi-joins.title": "Gayugi rejoint le roster League of Legends.",
-    "post.2026-11-08-gayugi-joins.p1": "Nous sommes fiers d'annoncer que Gayugi va nous rejoindre pour la prochaine saison de la Ligue Poro.",
+    "post.2026-11-10-gayugi-joins.title": "Gayugi rejoint le roster League of Legends.",
+    "post.2026-11-10-gayugi-joins.p1": "Nous sommes fiers d'annoncer que Gayugi va nous rejoindre pour la prochaine saison de la Ligue Poro.",
 
     "post.2026-11-08-maaple-joins.title": "Maaple rejoint le roster League of Legends.",
     "post.2026-11-08-maaple-joins.p1": "Nous sommes fiers d'annoncer que maaple va nous rejoindre pour la prochaine saison de la Ligue Poro.",
