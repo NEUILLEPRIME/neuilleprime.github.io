@@ -56,9 +56,6 @@ var NP67_I18N = {
       "post.example-role.p1": "Shows the old role and the new one side by side.",
     ---- end of example posts ---- */
 
-    "post.2026-11-25-test-post.title": "test post",
-    "post.2026-11-25-test-post.p1": "this is a test post",
-
     "post.2026-11-10-gayugi-joins.title": "Gayugi joins the League of Legends roster.",
     "post.2026-11-10-gayugi-joins.p1": "We're proud to announce that Gayugi will be joining us for the next Ligue Poro season.",
 
@@ -212,9 +209,6 @@ var NP67_I18N = {
       "post.example-role.title": "Exemple : changement de rôle",
       "post.example-role.p1": "Affiche l’ancien rôle et le nouveau côte à côte.",
     ---- end of example posts ---- */
-
-    "post.2026-11-25-test-post.title": "post de test",
-    "post.2026-11-25-test-post.p1": "ceci est post de test",
 
     "post.2026-11-10-gayugi-joins.title": "Gayugi rejoint le roster League of Legends.",
     "post.2026-11-10-gayugi-joins.p1": "Nous sommes fiers d'annoncer que Gayugi va nous rejoindre pour la prochaine saison de la Ligue Poro.",
